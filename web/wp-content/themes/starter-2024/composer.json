@@ -1,0 +1,32 @@
+{
+  "require-dev": {
+    "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+    "phpcompatibility/phpcompatibility-wp": "^2.1",
+    "sirbrillig/phpcs-changed": "^2.11",
+    "sirbrillig/phpcs-variable-analysis": "^2.11",
+    "wp-cli/i18n-command": "^2.5",
+    "wp-coding-standards/wpcs": "^3.0"
+  },
+  "scripts": {
+    "make-pot": "wp i18n make-pot . theme/languages/_tw.pot",
+    "php:lint": [
+      "vendor/bin/phpcs ./web/wp-content/themes/straus/ --standard=WordPress -d memory_limit=512M --ignore=*.js,./web/wp-content/themes/straus/vendor/*,*.css --error-severity=1 --warning-severity=6"
+    ],
+    "php:lint:autofix": [
+      "vendor/bin/phpcbf ./web/wp-content/themes/straus/ --standard=WordPress -d memory_limit=512M --ignore=*.js,./web/wp-content/themes/straus/vendor/*,*.css --error-severity=1 --warning-severity=6"
+    ]
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "Victoria\\": "theme/victoria/"
+    }
+  },
+  "require": {
+    "stoutlogic/acf-builder": "^1"
+  }
+}

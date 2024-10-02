@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<ruleset name="StatenwebWordPressStandard">
+    <rule ref="WordPress-Core">
+        <!-- Exclude filename errors -->
+        <exclude name="WordPress.Files.FileName.NotHyphenatedLowercase" />
+        <exclude name="WordPress.Files.FileName.InvalidClassFileName" />
+
+        <!-- Allow short array syntax -->
+        <exclude name="Generic.Arrays.DisallowShortArraySyntax"/>
+        <exclude name="Universal.Arrays.DisallowShortArraySyntax"/>
+
+        <!-- Allow short ternary syntax -->
+        <exclude name="Universal.Operators.DisallowShortTernary"/>
+
+        <!-- Allow assignments within conditional expressions and other statements.
+         This exclusion permits variable assignments to be part of expressions,
+         such as in if statements, while loops, and ternary operations.
+         For example, this rule allows:
+         if ( $condition && $var = some_function() ) {...} -->
+        <exclude name="Squiz.PHP.DisallowMultipleAssignments"/>
+    </rule>
+</ruleset>

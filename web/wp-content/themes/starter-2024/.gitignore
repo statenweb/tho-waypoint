@@ -1,0 +1,8 @@
+vendor
+node_modules
+theme/style-editor.css
+theme/style-editor-*.css
+theme/js/block-editor*.js
+theme/js/script.min.js
+theme/style.css
+
