@@ -26,6 +26,6 @@ jobs:
         uses: "ramsey/composer-install@v2"
       - name: Run PHPCS checks
         continue-on-error: true
-        run: vendor/bin/phpcs ./web/wp-content/themes/straus/ --standard=WordPress -d memory_limit=512M --ignore=*.js,./web/wp-content/themes/straus/vendor/*,*.css --error-severity=1 --warning-severity=6 --report-full --report-checkstyle=./phpcs-report.xml
+        run: vendor/bin/phpcs ./web/wp-content/themes/starter-2024/ --standard=statenweb.xml -d memory_limit=512M --ignore=*.js,./web/wp-content/themes/starter-2024/vendor/*,./web/wp-content/themes/starter-2024/node_modules/*,*.css --error-severity=1 --warning-severity=6 --report-full --report-checkstyle=./phpcs-report.xml
       - name: Show PHPCS results in PR
         run: cs2pr ./phpcs-report.xml

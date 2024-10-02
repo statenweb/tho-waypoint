@@ -7,6 +7,6 @@ use Victoria\Settings\Site;
 
 class Settings_Provider extends Provider {
 	protected array $items = [
-		Site::class
+		Site::class,
 	];
 }

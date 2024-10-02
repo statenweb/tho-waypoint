@@ -18,26 +18,26 @@ class Hero extends Block {
 
 	public function get_block_definition(): array {
 		return [
-				'name'              => $this->get_acf_unique_name(),
-				'title'             => self::BLOCK_NAME,
-				'description'       => self::BLOCK_NAME,
-				'render_template'   => sprintf( 'block/%s.php', self::BLOCK_SLUG ),
-				'category'          => 'common',
-				'icon'              => 'admin-site',
-				'keywords'          => [self::BLOCK_NAME],
-				'align'             => false,
-				'mode'			    => 'preview',
-				'supports'		    => [
-					'color' 			=> [
-						'background' 	=> true,
-						'text' 			=> true,
-						'gradients' 	=> true,
-					],
-					'jsx' 			=> true,
+			'name'              => $this->get_acf_unique_name(),
+			'title'             => self::BLOCK_NAME,
+			'description'       => self::BLOCK_NAME,
+			'render_template'   => sprintf( 'block/%s.php', self::BLOCK_SLUG ),
+			'category'          => 'common',
+			'icon'              => 'admin-site',
+			'keywords'          => [ self::BLOCK_NAME ],
+			'align'             => false,
+			'mode'              => 'preview',
+			'supports'          => [
+				'color'             => [
+					'background'    => true,
+					'text'          => true,
+					'gradients'     => true,
 				],
-				'enqueue_assets'  => function() {
-				},
-			];
+				'jsx'           => true,
+			],
+			'enqueue_assets'  => function () {
+			},
+		];
 	}
 
 	public function get_acf_fields(): FieldsBuilder {
@@ -49,7 +49,7 @@ class Hero extends Block {
 			->addFields( Background_Image::fields() )
 			->addFields( Submit_Button::fields() )
 
-			->setLocation( 'block', '==', 'acf/'  . $this->get_acf_unique_name() );
+			->setLocation( 'block', '==', 'acf/' . $this->get_acf_unique_name() );
 
 		return $section;
 	}

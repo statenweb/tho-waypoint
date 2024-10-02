@@ -10,7 +10,9 @@ abstract class Provider implements Bootable {
 	protected array $items = [];
 
 	public function boot(): void {
-		if ( empty( $this->items ) || ! is_array( $this->items ) ) return;
+		if ( empty( $this->items ) || ! is_array( $this->items ) ) {
+			return;
+		}
 
 		array_walk(
 			$this->items,

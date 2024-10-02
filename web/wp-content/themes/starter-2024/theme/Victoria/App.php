@@ -8,7 +8,9 @@ class App {
 	protected array $providers = [];
 
 	public function init(): void {
-		if ( empty( $this->providers ) || ! is_array( $this->providers ) ) return;
+		if ( empty( $this->providers ) || ! is_array( $this->providers ) ) {
+			return;
+		}
 
 		array_walk(
 			$this->providers,

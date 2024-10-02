@@ -9,6 +9,6 @@ use Victoria\Sidebars\Footer_Right;
 class Sidebars_Provider extends Provider {
 	protected array $items = [
 		Footer_Right::class,
-		Footer_Left::class
+		Footer_Left::class,
 	];
 }

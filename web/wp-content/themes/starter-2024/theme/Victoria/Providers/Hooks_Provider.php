@@ -9,6 +9,6 @@ use Victoria\Hooks\Filters;
 class Hooks_Provider extends Provider {
 	protected array $items = [
 		Actions::class,
-		Filters::class
+		Filters::class,
 	];
 }

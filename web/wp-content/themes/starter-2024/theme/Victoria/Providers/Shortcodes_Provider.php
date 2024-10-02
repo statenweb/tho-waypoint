@@ -7,6 +7,6 @@ use Victoria\Shortcodes\Year;
 
 class Shortcodes_Provider extends Provider {
 	protected array $items = [
-		Year::class
+		Year::class,
 	];
 }

@@ -16,13 +16,16 @@ class Button extends Field {
 					'label' => static::$title,
 				]
 			)
-	       ->addField('color', 'editor_palette', ['label' => 'Color'])
-	       ->addField('text_color', 'editor_palette', ['label' => 'Text Color'])
-	       ->addField('hover_text_color', 'editor_palette')
-	       ->addTrueFalse('outline')
-	       ->addTrueFalse('bold', [
-		       'label' => 'Bold',
-	       ]);
+		   ->addField( 'color', 'editor_palette', [ 'label' => 'Color' ] )
+		   ->addField( 'text_color', 'editor_palette', [ 'label' => 'Text Color' ] )
+		   ->addField( 'hover_text_color', 'editor_palette' )
+		   ->addTrueFalse( 'outline' )
+		->addTrueFalse(
+			'bold',
+			[
+				'label' => 'Bold',
+			]
+		);
 
 		return $button;
 	}
