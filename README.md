@@ -25,6 +25,6 @@ This will run webpack's watch functionality and will compile your JS/SCSS and ru
 
 That's all, you're set to get started.
 
-## Theme source code and autoloadin
-Theme source code is located in `Vicotria` directory.
+## Theme code and autoloading
+Theme code is located in `Vicotria` directory.
 We are using PSR4 autoloading, keep that in mind when extending theme code.
