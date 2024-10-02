@@ -65,33 +65,57 @@ class Student extends Cpt {
 		$settings = new FieldsBuilder( $this->get_acf_field_unique_name( 'locations' ) );
 
 		$settings
-			->addPostObject('locations', ['label' => 'Locations', 'post_type' => [self::POST_TYPE], 'multiple' => 1, 'return_format' => 'id'])
-			->addText('street', ['label' => 'Street'])
-			->addText('street2', ['label' => 'Street 2/Suite'])
-			->addText('city', ['label' => 'City'])
-			->addText('state', ['label' => 'State'])
-			->addText('zip', ['label' => 'Zip'])
-			->addText('phone', ['label' => 'Phone'])
-			->addText('fax', ['label' => 'Fax'])
-			->addEmail('email', ['label' => 'Email'])
-			->addMessage('Hours', '')
+			->addPostObject(
+				'locations',
+				[
+					'label' => 'Locations',
+					'post_type' => [ self::POST_TYPE ],
+					'multiple' => 1,
+					'return_format' => 'id',
+				]
+			)
+			->addText( 'street', [ 'label' => 'Street' ] )
+			->addText( 'street2', [ 'label' => 'Street 2/Suite' ] )
+			->addText( 'city', [ 'label' => 'City' ] )
+			->addText( 'state', [ 'label' => 'State' ] )
+			->addText( 'zip', [ 'label' => 'Zip' ] )
+			->addText( 'phone', [ 'label' => 'Phone' ] )
+			->addText( 'fax', [ 'label' => 'Fax' ] )
+			->addEmail( 'email', [ 'label' => 'Email' ] )
+			->addMessage( 'Hours', '' )
 
-			->addField('text_2', 'medium_editor', [
-				'label' => 'Hours Text Top Line 1',
-			])
+			->addField(
+				'text_2',
+				'medium_editor',
+				[
+					'label' => 'Hours Text Top Line 1',
+				]
+			)
 
-			->addText('monday', ['label' => 'Monday'])
-			->addText('tuesday', ['label' => 'Tuesday'])
-			->addText('wednesday', ['label' => 'Wednesday'])
-			->addText('thursday', ['label' => 'Thursday'])
-			->addText('friday', ['label' => 'Friday'])
-			->addText('saturday', ['label' => 'Saturday'])
-			->addText('sunday', ['label' => 'Sunday'])
-			->addTextarea('bottom_text', ['label' => 'Bottom Text'])
-			->addText('latitude', ['label' => 'Latitude', 'instructions' => 'Only touch this if you know what you are doing'])
-			->addText('longitude', ['label' => 'Longitude', 'instructions' => 'Only touch this if you know what you are doing'])
+			->addText( 'monday', [ 'label' => 'Monday' ] )
+			->addText( 'tuesday', [ 'label' => 'Tuesday' ] )
+			->addText( 'wednesday', [ 'label' => 'Wednesday' ] )
+			->addText( 'thursday', [ 'label' => 'Thursday' ] )
+			->addText( 'friday', [ 'label' => 'Friday' ] )
+			->addText( 'saturday', [ 'label' => 'Saturday' ] )
+			->addText( 'sunday', [ 'label' => 'Sunday' ] )
+			->addTextarea( 'bottom_text', [ 'label' => 'Bottom Text' ] )
+			->addText(
+				'latitude',
+				[
+					'label' => 'Latitude',
+					'instructions' => 'Only touch this if you know what you are doing',
+				]
+			)
+			->addText(
+				'longitude',
+				[
+					'label' => 'Longitude',
+					'instructions' => 'Only touch this if you know what you are doing',
+				]
+			)
 
-			->setLocation('post_type', '==', self::POST_TYPE);
+			->setLocation( 'post_type', '==', self::POST_TYPE );
 
 		return $settings;
 	}

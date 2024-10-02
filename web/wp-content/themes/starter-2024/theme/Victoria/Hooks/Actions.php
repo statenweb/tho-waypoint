@@ -6,10 +6,10 @@ use Victoria\Abstracts\Hook;
 
 class Actions extends Hook {
 	public function attach_hooks(): void {
-		add_action( 'after_setup_theme', [$this, 'image_sizes'] );
+		add_action( 'after_setup_theme', [ $this, 'image_sizes' ] );
 	}
 
-	public function image_sizes(){
+	public function image_sizes() {
 		add_image_size( 'provider-crop-small', 313, 400, true );
 		add_image_size( 'provider-crop', 500, 638, true );
 		add_image_size( 'provider', 500, 638, false );

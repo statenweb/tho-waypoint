@@ -141,8 +141,6 @@ add_action( 'wp_enqueue_scripts', '_tw_scripts' );
 
 function _tw_scripts_admin() {
 	wp_enqueue_style( '_tw-style-admin', get_template_directory_uri() . '/style-admin.css', array(), _TW_VERSION );
-
-
 }
 add_action( 'admin_enqueue_scripts', '_tw_scripts_admin' );
 

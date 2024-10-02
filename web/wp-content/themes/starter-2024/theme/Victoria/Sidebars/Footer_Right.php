@@ -17,4 +17,3 @@ class Footer_Right extends Sidebar {
 		];
 	}
 }
-

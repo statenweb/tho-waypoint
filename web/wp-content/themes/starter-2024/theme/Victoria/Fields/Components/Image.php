@@ -14,7 +14,7 @@ class Image extends Field {
 				static::$field_name,
 				[
 					'label'         => static::$title,
-					'return_format' => 'id'
+					'return_format' => 'id',
 				]
 			);
 

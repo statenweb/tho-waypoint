@@ -9,7 +9,9 @@ class Trait_Handler extends Handler {
 	public static function handle( $class_instance ): void {
 		$class_traits = self::get_class_traits( $class_instance );
 
-		if ( ! $class_traits ) return;
+		if ( ! $class_traits ) {
+			return;
+		}
 
 		if ( in_array( Has_Acf_Fields_Builder::class, $class_traits ) ) {
 			$class_instance->register_acf_fields();

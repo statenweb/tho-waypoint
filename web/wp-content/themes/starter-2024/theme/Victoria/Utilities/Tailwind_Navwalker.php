@@ -38,7 +38,7 @@ class Tailwind_Navwalker extends \Walker_Nav_Menu {
 		// Default class to add to the file.
 		$class_names = '';
 		$classes_depth_1 = array( 'dropdown-menu', 'l1', 'hidden', 'lg:shadow-2xl' );
-		$classes_depth_2 = array( 'dropdown-menu', 'l2', 'ml-5');
+		$classes_depth_2 = array( 'dropdown-menu', 'l2', 'ml-5' );
 		/**
 		 * Filters the CSS class(es) applied to a menu list element.
 		 *
@@ -48,10 +48,10 @@ class Tailwind_Navwalker extends \Walker_Nav_Menu {
 		 * @param stdClass $args    An object of `wp_nav_menu()` arguments.
 		 * @param int      $depth   Depth of menu item. Used for padding.
 		 */
-		if(0 === $depth) {
+		if ( 0 === $depth ) {
 			$class_names = join( ' ', apply_filters( 'nav_menu_submenu_css_class', $classes_depth_1, $args, $depth ) );
 		}
-		if(1 === $depth) {
+		if ( 1 === $depth ) {
 			$class_names = join( ' ', apply_filters( 'nav_menu_submenu_css_class', $classes_depth_2, $args, $depth ) );
 		}
 
@@ -194,7 +194,7 @@ class Tailwind_Navwalker extends \Walker_Nav_Menu {
 			} else {
 				$atts['class'] = 'nav-link ';
 			}
-			if ( isset( $args->has_children ) && $args->has_children && 1 === $depth && $args->depth > 1 ){
+			if ( isset( $args->has_children ) && $args->has_children && 1 === $depth && $args->depth > 1 ) {
 				$atts['class'] = 'dropdown-toggle-l2 relative dropdown-item';
 				$atts['aria-haspopup'] = 'menu';
 

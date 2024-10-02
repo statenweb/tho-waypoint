@@ -4,10 +4,10 @@ $id          = basename( __FILE__ ) . $block['id'];
 $align_class = $block['align'] ? 'align' . $block['align'] : '';
 $class_name   = '';
 if ( ! empty( $block['className'] ) ) {
-    $class_name .= ' ' . $block['className'];
+	$class_name .= ' ' . $block['className'];
 }
 if ( ! empty( $block['align'] ) ) {
-    $class_name .= ' align' . $block['align'];
+	$class_name .= ' align' . $block['align'];
 }
 ?>
 
