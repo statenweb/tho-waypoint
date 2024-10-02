@@ -25,6 +25,35 @@ This will run webpack's watch functionality and will compile your JS/SCSS and ru
 
 That's all, you're set to get started.
 
-## Theme code and autoloading
-Theme code is located in `Vicotria` directory.
-We are using PSR4 autoloading, keep that in mind when extending theme code.
+## Autoloading
+We use PSR-4 autoloading for class files.
+
+### Classes
+When creating new classes, follow the existing structure:
+	- Class file path: `Victoria\Class_Name.php`
+	- Class name: `Victoria\Class_Name.php`
+
+### Method & Function Naming
+Methods and functions should follow the snake_case convention (e.g. `class_method_or_function()`).
+
+## Theme code structure
+
+### Bootstrapping the Application
+The application bootstraps from `application.php`. You’ll need to register your service providers in the main `App` class.
+
+#### Service Providers
+Each provider should be responsible for loading a specific set of classes. When creating a new provider, make sure it extends the `abstract Victoria\Abstracts\Provider` class. This abstract class will automatically load all classes defined in the provider’s `protected array $items` property. Additionally, it utilizes handlers to manage each class’s associated `Interfaces` and `Traits`.
+
+### Blocks, Hooks, Sidebars... Classes
+We have abstract classes to handle common logic, and specific implementations (e.g. `Hero_Block`) should extend these abstract classes. The abstract classes manage core logic, while specific classes define settings for that logic.
+
+When creating a new class, make sure to register it in the corresponding provider’s `protected array $items` property.
+
+### Interfaces
+Interfaces are used in conjunction with abstract classes. They allow handlers to manage the specific logic of abstract classes. For example, the `abstract class Enqueue` and `abstract class Hook` both implement the `Hookable` interface. Any new class extending these abstracts (e.g. `Icons_Enqueue` or `WC_Hooks`) should implement the `attach_hooks()` method to register hooks and callbacks.
+
+### PHP Code Sniffer & Coding Standards
+You can create ACF fields programmatically using PHP. If you're using the `Has_Acf_Fields_Builder` trait in your class, the class must implement the `get_acf_fields()` method, which returns a `FieldsBuilder` instance. Alternatively, you can still use the ACF plugin's UI to build block fields - just skip including the trait in that case.
+
+## PHP code sniffer & coding standards
+To ensure your code meets our standards, you can run `composer run lint` to check for issues, and `composer run code-fixer` to automatically fix errors. Note that your code must pass linting before committing, as all PRs will trigger a lint check on the committed code. PRs with linting errors will not be mergeable.
