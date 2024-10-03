@@ -4,11 +4,11 @@ namespace Victoria\Handlers;
 
 use Victoria\Abstracts\Handler;
 use Victoria\Interfaces\Hookable;
-use Victoria\Interfaces\Initializable;
+use Victoria\Interfaces\Initiable;
 
 class Interface_Handler extends Handler {
 	public static function handle( $class_instance ): void {
-		if ( $class_instance instanceof Initializable ) {
+		if ( $class_instance instanceof Initiable ) {
 			$class_instance->init();
 		}
 

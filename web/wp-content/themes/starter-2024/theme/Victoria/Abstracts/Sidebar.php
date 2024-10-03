@@ -2,9 +2,9 @@
 
 namespace Victoria\Abstracts;
 
-use Victoria\Interfaces\Initializable;
+use Victoria\Interfaces\Initiable;
 
-abstract class Sidebar implements Initializable {
+abstract class Sidebar implements Initiable {
 	abstract public function get_sidebar_definition(): array;
 
 	public function init(): void {

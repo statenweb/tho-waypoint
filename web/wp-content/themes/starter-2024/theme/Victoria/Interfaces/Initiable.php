@@ -2,6 +2,6 @@
 
 namespace Victoria\Interfaces;
 
-interface Initializable {
+interface Initiable {
 	public function init();
 }

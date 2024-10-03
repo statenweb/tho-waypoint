@@ -2,9 +2,9 @@
 
 namespace Victoria\Abstracts;
 
-use Victoria\Interfaces\Initializable;
+use Victoria\Interfaces\Initiable;
 
-abstract class Cpt implements Initializable {
+abstract class Cpt implements Initiable {
 	const POST_TYPE = '';
 
 	abstract public function get_cpt_definition(): array;

@@ -50,7 +50,7 @@ class Site extends Setting {
 	}
 
 	public function get_acf_fields(): ?FieldsBuilder {
-		$settings = new FieldsBuilder( $this->get_acf_field_unique_name( 'sw' ) );
+		$settings = new FieldsBuilder( $this->get_acf_field_unique_name( 'site-settings' ) );
 
 		$settings
 			->addImage(

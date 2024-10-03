@@ -7,7 +7,7 @@ require_once __DIR__ . '/application.php';
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
- * @package $straus
+ * @package $starter-2024
  */
 
 if ( ! defined( '_TW_VERSION' ) ) {

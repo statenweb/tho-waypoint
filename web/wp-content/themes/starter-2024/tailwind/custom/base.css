@@ -12,5 +12,5 @@
  * editor.
 */
 body {
-	@apply bg-body-background text-body-text font-body;
+	@apply bg-body-background text-body-text;
 }

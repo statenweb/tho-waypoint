@@ -40,7 +40,6 @@
 <ul class="custom-bullets custom-list mb-5 !mb-5 !mb-10 !mt-5 !mt-10 lg:columns-2 outer-pad outer-pad-x outer-pad-y lg:columns-2 mobile-only:py-5 mobile-only:mb-5 lg:outer-pad-y"></ul>
 <div class="columns-2"></div>
 <div class="at-top"></div>
-<div class="font-sans !font-sans font-body !font-body font-normal !font-normal"></div>
 <div class="scrolled-down"></div>
 <div class="scrolling-up"></div>
 
