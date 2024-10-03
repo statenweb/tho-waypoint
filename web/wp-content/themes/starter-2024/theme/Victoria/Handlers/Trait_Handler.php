@@ -3,7 +3,7 @@
 namespace Victoria\Handlers;
 
 use Victoria\Abstracts\Handler;
-use Victoria\Traits\Has_Acf_Fields_Builder;
+use Victoria\Attributes\Handler_Method;
 
 class Trait_Handler extends Handler {
 	public static function handle( $class_instance ): void {
@@ -13,15 +13,34 @@ class Trait_Handler extends Handler {
 			return;
 		}
 
-		if ( in_array( Has_Acf_Fields_Builder::class, $class_traits ) ) {
-			$class_instance->register_acf_fields();
+		foreach ( $class_traits as $trait_name ) {
+			$reflection_trait = new \ReflectionClass( $trait_name );
+
+			foreach ( $reflection_trait->getMethods() as $trait_method ) {
+				$method_name = $trait_method->getName();
+
+				$attributes = $trait_method->getAttributes( Handler_Method::class );
+
+				if ( ! empty( $attributes ) ) {
+					if ( is_callable( [ $class_instance, $method_name ] ) ) {
+						$class_instance->{$method_name}();
+					}
+				}
+			}
 		}
 	}
 
 	private static function get_class_traits( $class_instance ): array {
-		return array_merge(
-			class_uses( $class_instance ),
-			array_values( array_map( 'class_uses', class_parents( $class_instance ) ) )
-		);
+		$class_traits = class_uses( $class_instance );
+
+		foreach ( class_parents( $class_instance ) as $parent ) {
+			$class_traits = array_merge( $class_traits, class_uses( $parent ) );
+		}
+
+		foreach ( $class_traits as $trait ) {
+			$class_traits = array_merge( $class_traits, class_uses( $trait ) );
+		}
+
+		return $class_traits;
 	}
 }

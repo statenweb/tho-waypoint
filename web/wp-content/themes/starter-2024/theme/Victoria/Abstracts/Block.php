@@ -2,9 +2,9 @@
 
 namespace Victoria\Abstracts;
 
-use Victoria\Interfaces\Initializable;
+use Victoria\Interfaces\Initiable;
 
-abstract class Block implements Initializable {
+abstract class Block implements Initiable {
 	const BLOCK_SLUG = '';
 	const BLOCK_NAME = '';
 

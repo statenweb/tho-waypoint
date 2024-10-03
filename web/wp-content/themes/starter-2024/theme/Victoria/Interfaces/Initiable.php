@@ -4,7 +4,7 @@ namespace Victoria\Interfaces;
 
 use Victoria\Attributes\Handler_Method;
 
-interface Hookable {
+interface Initiable {
 	#[Handler_Method]
-	public function attach_hooks(): void;
+	public function init();
 }
