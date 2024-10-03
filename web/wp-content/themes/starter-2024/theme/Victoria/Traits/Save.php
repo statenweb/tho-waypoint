@@ -2,7 +2,10 @@
 
 namespace Victoria\Traits;
 
+use Victoria\Attributes\Handler_Method;
+
 trait Save {
+	#[Handler_Method]
 	public function save_hooks() {
 		add_action( 'save_post', [ $this, 'trait_save_post' ], PHP_INT_MAX, 2 );
 	}

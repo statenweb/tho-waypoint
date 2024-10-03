@@ -5,10 +5,12 @@ namespace Victoria\Traits;
 use StoutLogic\AcfBuilder\FieldsBuilder;
 use Victoria\Abstracts\Block;
 use Victoria\Abstracts\Cpt;
+use Victoria\Attributes\Handler_Method;
 
 trait Has_Acf_Fields_Builder {
 	abstract public function get_acf_fields(): ?FieldsBuilder;
 
+	#[Handler_Method]
 	public function register_acf_fields(): self {
 		if (
 			function_exists( 'acf_add_local_field_group' )

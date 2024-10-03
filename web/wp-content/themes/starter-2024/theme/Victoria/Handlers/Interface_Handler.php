@@ -3,17 +3,28 @@
 namespace Victoria\Handlers;
 
 use Victoria\Abstracts\Handler;
-use Victoria\Interfaces\Hookable;
-use Victoria\Interfaces\Initiable;
+use Victoria\Attributes\Handler_Method;
 
 class Interface_Handler extends Handler {
 	public static function handle( $class_instance ): void {
-		if ( $class_instance instanceof Initiable ) {
-			$class_instance->init();
-		}
+		$reflection_class = new \ReflectionClass( $class_instance );
 
-		if ( $class_instance instanceof Hookable ) {
-			$class_instance->attach_hooks();
+		$reflection_class_interfaces = $reflection_class->getInterfaces();
+
+		if ( ! $reflection_class_interfaces ) return;
+
+		foreach ( $reflection_class_interfaces as $interface ) {
+			$interface_methods = $interface->getMethods();
+
+			foreach ( $interface_methods as $method ) {
+				$method_name = $method->getName();
+
+				$attributes = $method->getAttributes( Handler_Method::class );
+
+				if ( ! empty( $attributes ) ) {
+					$class_instance->{$method_name}();
+				}
+			}
 		}
 	}
 }
