@@ -9,7 +9,9 @@ class Trait_Handler extends Handler {
 	public static function handle( $class_instance ): void {
 		$class_traits = self::get_class_traits( $class_instance );
 
-		if ( ! $class_traits ) return;
+		if ( ! $class_traits ) {
+			return;
+		}
 
 		foreach ( $class_traits as $trait_name ) {
 			$reflection_trait = new \ReflectionClass( $trait_name );

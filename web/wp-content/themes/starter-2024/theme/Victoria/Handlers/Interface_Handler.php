@@ -11,7 +11,9 @@ class Interface_Handler extends Handler {
 
 		$reflection_class_interfaces = $reflection_class->getInterfaces();
 
-		if ( ! $reflection_class_interfaces ) return;
+		if ( ! $reflection_class_interfaces ) {
+			return;
+		}
 
 		foreach ( $reflection_class_interfaces as $interface ) {
 			$interface_methods = $interface->getMethods();
