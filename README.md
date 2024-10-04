@@ -57,6 +57,7 @@ Interfaces are used in conjunction with abstract classes. They allow handlers to
 
 ### ACF Fields for Gutenberg Blocks and `Has_Acf_Fields_Builder` Trait
 You can create ACF fields programmatically using PHP. If you're using the `Has_Acf_Fields_Builder` trait in your class, the class must implement the `get_acf_fields()` method, which returns a `FieldsBuilder` instance. Alternatively, you can still use the ACF plugin's UI to build block fields - just skip including the trait in that case.
+For more information on programmatically building ACF fields and blocks with PHP, refer to the [StoutLogic / acf-builder](https://github.com/StoutLogic/acf-builder) documentation.
 
 ### Bringing It All Together
 The main `App` class is responsible for registering and booting providers (e.g. `Blocks_Provider`). Each provider will then load the classes it has registered (e.g. the `Hero` block class). These classes are passed to handlers, which determine which methods to invoke by checking for the `Handler_Method` attribute on the methods of the instances.
