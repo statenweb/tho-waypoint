@@ -46,3 +46,5 @@ web/wp-content/themes/divi
 web/wp-content/themes/blocksy
 web/wp-content/themes/astra
 .DS_Store
+
+web/wp-content/debug.log

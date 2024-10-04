@@ -308,7 +308,7 @@ class Utils {
 		];
 	}
 
-	public static function get_height_choices( $prefix = '', $suffix ) {
+	public static function get_height_choices( $suffix, $prefix = '' ) {
 		return [
 			'' => 'none',
 			$prefix . '10vh' . $suffix => '10vh',
