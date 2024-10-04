@@ -1,6 +1,6 @@
 <?php
 
-namespace Victoria\Background_Processing;
+namespace Victoria\Background_Processing\Sw_Background_Processing_Classes;
 
 use WP_Background_Process;
 
