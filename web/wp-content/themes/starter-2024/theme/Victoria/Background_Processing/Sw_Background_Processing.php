@@ -2,19 +2,11 @@
 
 namespace Victoria\Background_Processing;
 
-use Victoria\Interfaces\Hookable;
+use Victoria\Abstracts\Background_Processing;
+use Victoria\Background_Processing\Sw_Background_Processing_Classes\Sw_Async_Request;
+use Victoria\Background_Processing\Sw_Background_Processing_Classes\Sw_Background_Job;
 
-class Sw_Background_Processing implements Hookable {
-	protected $process_single;
-
-	protected $process_all;
-
-	public function attach_hooks(): void {
-		add_action( 'init', [ $this, 'init' ] );
-	}
-
-	public function init() {
-		$this->process_single = new Sw_Async_Request();
-		$this->process_all = new Sw_Background_Job();
-	}
+class Sw_Background_Processing extends Background_Processing {
+	protected ?string $async_request_class_name = Sw_Async_Request::class;
+	protected ?string $background_job_class_name = Sw_Background_Job::class;
 }

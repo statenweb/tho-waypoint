@@ -65,6 +65,9 @@ Application uses [deliciousbrains / wp-background-processing](https://github.com
 - For async requests, utilize the `Sw_Async_Request` class.
 For detailed usage, refer to the package's documentation.
 
+If you need to create custom background jobs or asynchronous request classes, extend the `Background_Processing` class. Make sure to set the `protected ?string $async_request_class_name` and `protected ?string $background_job_class_name` properties accordingly.
+Don’t forget to register your background processing class in the `Background_Processing_Provider` class.
+
 #### Bringing It All Together
 The main `App` class is responsible for registering and booting providers (e.g. `Blocks_Provider`). Each provider will then load the classes it has registered (e.g. the `Hero` block class). These classes are passed to handlers, which determine which methods to invoke by checking for the `Handler_Method` attribute on the methods of the instances.
 
