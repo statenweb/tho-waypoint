@@ -58,5 +58,8 @@ Interfaces are used in conjunction with abstract classes. They allow handlers to
 ### ACF Fields for Gutenberg Blocks and `Has_Acf_Fields_Builder` Trait
 You can create ACF fields programmatically using PHP. If you're using the `Has_Acf_Fields_Builder` trait in your class, the class must implement the `get_acf_fields()` method, which returns a `FieldsBuilder` instance. Alternatively, you can still use the ACF plugin's UI to build block fields - just skip including the trait in that case.
 
+### Bringing It All Together
+The main `App` class is responsible for registering and booting providers (e.g. `Blocks_Provider`). Each provider will then load the classes it has registered (e.g. the `Hero` block class). These classes are passed to handlers, which determine which methods to invoke by checking for the `Handler_Method` attribute on the methods of the instances.
+
 ## PHP code sniffer & coding standards
 To ensure your code meets our standards, you can run `composer run lint` to check for issues, and `composer run code-fixer` to automatically fix errors. Note that your code must pass linting before committing, as all PRs will trigger a lint check on the committed code. PRs with linting errors will not be mergeable.

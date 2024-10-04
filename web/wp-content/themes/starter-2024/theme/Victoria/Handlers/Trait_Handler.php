@@ -22,18 +22,17 @@ class Trait_Handler extends Handler {
 				$attributes = $trait_method->getAttributes( Handler_Method::class );
 
 				if ( ! empty( $attributes ) ) {
-					if ( is_callable( [ $class_instance, $method_name ] ) ) {
-						$class_instance->{$method_name}();
-					}
+					$class_instance->{$method_name}();
 				}
 			}
 		}
 	}
 
 	private static function get_class_traits( $class_instance ): array {
-		$class_traits = class_uses( $class_instance );
+		$class_parents = class_parents( $class_instance ) ?: [];
+		$class_traits = class_uses( $class_instance ) ?: [];
 
-		foreach ( class_parents( $class_instance ) as $parent ) {
+		foreach ( $class_parents as $parent ) {
 			$class_traits = array_merge( $class_traits, class_uses( $parent ) );
 		}
 
