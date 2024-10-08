@@ -75,7 +75,7 @@ Below is an example of how to build and send an email using the provided methods
 $mailer = new \Victoria\Utilities\Sw_Mail_Service();
 
 $mailer->add_recipient('recipient.1@gmail.com')
-    ->add_recipient('recipient.1@gmail.com')
+    ->add_recipient('recipient.2@gmail.com')
     ->set_subject('Hello from StatenWeb')
     ->set_body('Welcome to StatenWeb. This text can be HTML.')
     ->set_from(['name' => 'StetenWeb', 'email' => 'hello@statenweb.com'])
