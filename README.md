@@ -86,7 +86,6 @@ $mailer->add_recipient('recipient.1@gmail.com')
     ->add_attachment( wp_get_upload_dir()['basedir'] . '/example_file_1.csv' )
     ->add_attachment( wp_get_upload_dir()['basedir'] . '/example_file_2.csv' )
     ->send_mail();
-}
 ```
 
 #### Bringing It All Together
