@@ -21,7 +21,7 @@ class Sw_Mail_Service {
 			$this->get_subject(),
 			$this->get_body(),
 			$this->get_headers(),
-			$this->get_attachments()
+			$this->get_attachments(),
 		];
 
 		if ( $sync ) {
@@ -57,7 +57,7 @@ class Sw_Mail_Service {
 			! isset( $from['name'] )
 			|| ! isset( $from['email'] )
 		) {
-			throw new \InvalidArgumentException( "The 'from' array must contain both 'name' and 'email' keys.");
+			throw new \InvalidArgumentException( "The 'from' array must contain both 'name' and 'email' keys." );
 		}
 
 		$this->from = $from;
@@ -74,7 +74,7 @@ class Sw_Mail_Service {
 			! isset( $reply_to['name'] )
 			|| ! isset( $reply_to['email'] )
 		) {
-			throw new \InvalidArgumentException( "The 'reply_to' array must contain both 'name' and 'email' keys.");
+			throw new \InvalidArgumentException( "The 'reply_to' array must contain both 'name' and 'email' keys." );
 		}
 
 		$this->reply_to = $reply_to;
@@ -91,7 +91,7 @@ class Sw_Mail_Service {
 			! isset( $cc_email['name'] )
 			|| ! isset( $cc_email['email'] )
 		) {
-			throw new \InvalidArgumentException( "The 'cc' array must contain both 'name' and 'email' keys.");
+			throw new \InvalidArgumentException( "The 'cc' array must contain both 'name' and 'email' keys." );
 		}
 
 		$this->cc_emails[] = $cc_email;
@@ -108,7 +108,7 @@ class Sw_Mail_Service {
 			! isset( $bcc_email['name'] )
 			|| ! isset( $bcc_email['email'] )
 		) {
-			throw new \InvalidArgumentException( "The 'bcc' array must contain both 'name' and 'email' keys.");
+			throw new \InvalidArgumentException( "The 'bcc' array must contain both 'name' and 'email' keys." );
 		}
 
 		$this->bcc_emails[] = $bcc_email;
