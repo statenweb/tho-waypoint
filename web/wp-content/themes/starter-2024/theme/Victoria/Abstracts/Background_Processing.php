@@ -10,8 +10,8 @@ abstract class Background_Processing implements Hookable {
 	/*
 	 * When extending this class, override below properties
 	 */
-	protected ?string $async_request_class_name;
-	protected ?string $background_job_class_name;
+	protected ?string $async_request_class_name = null;
+	protected ?string $background_job_class_name = null;
 
 	/*
 	 * Below properties will hold instances of background job and async request classes, don't override them

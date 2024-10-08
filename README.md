@@ -68,6 +68,27 @@ For detailed usage, refer to the package's documentation.
 If you need to create custom background jobs or asynchronous request classes, extend the `Background_Processing` class. Make sure to set the `protected ?string $async_request_class_name` and `protected ?string $background_job_class_name` properties accordingly.
 Don’t forget to register your background processing class in the `Background_Processing_Provider` class.
 
+#### SW_Mailer
+If you need to send emails, you can utilize the `SW_Mailer` class. By default, this class will push the email-sending process to a background job. If you prefer to send emails synchronously (without using background processing), pass the `$sync` parameter as `true` when calling `send_mail()`, like so `send_mail( sync: true )`.
+Below is an example of how to build and send an email using the provided methods:
+```
+$mailer = new \Victoria\Utilities\SW_Mailer();
+
+$mailer->add_recipient('recipient.1@gmail.com')
+    ->add_recipient('recipient.1@gmail.com')
+	->set_subject('Hello from StatenWeb')
+	->set_body('Welcome to StatenWeb. This text can be HTML.')
+	->set_from(['name' => 'StetenWeb', 'email' => 'hello@statenweb.com'])
+	->set_reply_to(['name' => 'StetenWeb', 'email' => 'hello@statenweb.com'])
+	->add_cc_email(['name' => 'Operations', 'email' => 'operations@statenweb.com'])
+	->add_cc_email(['name' => 'Marketing', 'email' => 'marketing@statenweb.com'])
+	->add_bcc_email(['name' => 'developers', 'email' => 'developers@statenweb.com'])
+	->add_attachment( wp_get_upload_dir()['basedir'] . '/example_file_1.csv' )
+	->add_attachment( wp_get_upload_dir()['basedir'] . '/example_file_2.csv' )
+	->send_mail();
+}
+```
+
 #### Bringing It All Together
 The main `App` class is responsible for registering and booting providers (e.g. `Blocks_Provider`). Each provider will then load the classes it has registered (e.g. the `Hero` block class). These classes are passed to handlers, which determine which methods to invoke by checking for the `Handler_Method` attribute on the methods of the instances.
 
