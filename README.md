@@ -76,17 +76,16 @@ $mailer = new \Victoria\Utilities\Sw_Mail_Service();
 
 $mailer->add_recipient('recipient.1@gmail.com')
     ->add_recipient('recipient.1@gmail.com')
-	->set_subject('Hello from StatenWeb')
-	->set_body('Welcome to StatenWeb. This text can be HTML.')
-	->set_from(['name' => 'StetenWeb', 'email' => 'hello@statenweb.com'])
-	->set_reply_to(['name' => 'StetenWeb', 'email' => 'hello@statenweb.com'])
-	->add_cc_email(['name' => 'Operations', 'email' => 'operations@statenweb.com'])
-	->add_cc_email(['name' => 'Marketing', 'email' => 'marketing@statenweb.com'])
-	->add_bcc_email(['name' => 'developers', 'email' => 'developers@statenweb.com'])
-	->add_attachment( wp_get_upload_dir()['basedir'] . '/example_file_1.csv' )
-	->add_attachment( wp_get_upload_dir()['basedir'] . '/example_file_2.csv' )
-	->send_mail();
-}
+    ->set_subject('Hello from StatenWeb')
+    ->set_body('Welcome to StatenWeb. This text can be HTML.')
+    ->set_from(['name' => 'StetenWeb', 'email' => 'hello@statenweb.com'])
+    ->set_reply_to(['name' => 'StetenWeb', 'email' => 'hello@statenweb.com'])
+    ->add_cc_email(['name' => 'Operations', 'email' => 'operations@statenweb.com'])
+    ->add_cc_email(['name' => 'Marketing', 'email' => 'marketing@statenweb.com'])
+    ->add_bcc_email(['name' => 'developers', 'email' => 'developers@statenweb.com'])
+    ->add_attachment( wp_get_upload_dir()['basedir'] . '/example_file_1.csv' )
+    ->add_attachment( wp_get_upload_dir()['basedir'] . '/example_file_2.csv' )
+    ->send_mail();
 ```
 
 #### Bringing It All Together
