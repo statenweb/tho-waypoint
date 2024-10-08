@@ -4,7 +4,7 @@ namespace Victoria\Utilities;
 
 use Victoria\Background_Processing\Sw_Email_Background_Processing_Classes\Sw_Email_Background_Job;
 
-class SW_Mailer {
+class Sw_Mail_Service {
 	private array $recipients_emails;
 	private ?array $from;
 	private ?array $reply_to;

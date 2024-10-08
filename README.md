@@ -69,10 +69,10 @@ If you need to create custom background jobs or asynchronous request classes, ex
 Don’t forget to register your background processing class in the `Background_Processing_Provider` class.
 
 #### SW_Mailer
-If you need to send emails, you can utilize the `SW_Mailer` class. By default, this class will push the email-sending process to a background job. If you prefer to send emails synchronously (without using background processing), pass the `$sync` parameter as `true` when calling `send_mail()`, like so `send_mail( sync: true )`.
+If you need to send emails, you can utilize the `Sw_Mail_Service` class. By default, this class will push the email-sending process to a background job. If you prefer to send emails synchronously (without using background processing), pass the `$sync` parameter as `true` when calling `send_mail()`, like so `send_mail( sync: true )`.
 Below is an example of how to build and send an email using the provided methods:
 ```
-$mailer = new \Victoria\Utilities\SW_Mailer();
+$mailer = new \Victoria\Utilities\Sw_Mail_Service();
 
 $mailer->add_recipient('recipient.1@gmail.com')
     ->add_recipient('recipient.1@gmail.com')
