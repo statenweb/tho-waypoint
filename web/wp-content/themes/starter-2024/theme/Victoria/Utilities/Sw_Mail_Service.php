@@ -18,7 +18,7 @@ class Sw_Mail_Service {
 
 	public function send_mail( bool $sync = false ): void {
 		if ( ! $this->get_recipients() && ! $this->get_group_recipients() ) {
-			throw new \RuntimeException( "Email cannot be sent: no recipients found. Ensure that at least one valid recipient is provided before attempting to send the email." );
+			throw new \RuntimeException( 'Email cannot be sent: no recipients found. Ensure that at least one valid recipient is provided before attempting to send the email.' );
 		}
 
 		if ( $this->get_recipients() ) {
