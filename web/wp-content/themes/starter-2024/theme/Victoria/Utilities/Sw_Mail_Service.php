@@ -5,19 +5,35 @@ namespace Victoria\Utilities;
 use Victoria\Background_Processing\Sw_Email_Background_Processing_Classes\Sw_Email_Background_Job;
 
 class Sw_Mail_Service {
-	private array $recipients_emails;
-	private ?array $from;
-	private ?array $reply_to;
-	private ?array $cc_emails;
-	private ?array $bcc_emails;
+	private ?array $recipients_emails = null;
+	private ?array $group_recipients_emails = null;
+	private ?array $from = null;
+	private ?array $reply_to = null;
+	private ?array $cc_emails = null;
+	private ?array $bcc_emails = null;
 	private string $subject;
 	private string $body;
-	private ?array $attachments;
-	private ?array $headers;
+	private ?array $attachments = null;
+	private ?array $headers = null;
 
-	public function send_mail( bool $sync = false ): bool {
+	public function send_mail( bool $sync = false ): void {
+		if ( ! $this->get_recipients() && ! $this->get_group_recipients() ) {
+			throw new \RuntimeException( "Email cannot be sent: no recipients found. Ensure that at least one valid recipient is provided before attempting to send the email." );
+		}
+
+		if ( $this->get_recipients() ) {
+			$this->handle_single_recipients( $sync );
+		}
+
+		if ( $this->get_group_recipients() ) {
+			$this->handle_group_recipients( $sync );
+		}
+	}
+
+	private function handle_single_recipients( bool $sync ): void {
+		$recipients = $this->get_recipients();
+
 		$email_data = [
-			$this->get_recipients(),
 			$this->get_subject(),
 			$this->get_body(),
 			$this->get_headers(),
@@ -25,14 +41,50 @@ class Sw_Mail_Service {
 		];
 
 		if ( $sync ) {
-			return $this->execute( $email_data );
+			array_walk(
+				$recipients,
+				function ( $recipient ) use ( $email_data ) {
+					array_unshift( $email_data, $recipient );
+
+					$this->execute( $email_data );
+				}
+			);
 		} else {
 			$background_job = new Sw_Email_Background_Job();
 
-			$background_job->push_to_queue( $email_data );
-			$background_job->save()->dispatch();
+			array_walk(
+				$recipients,
+				function ( $recipient ) use ( $email_data, $background_job ) {
+					array_unshift( $email_data, $recipient );
 
-			return true;
+					$background_job->push_to_queue( $email_data );
+				}
+			);
+
+			$background_job->save()->dispatch();
+		}
+	}
+
+	private function handle_group_recipients( bool $sync ): void {
+		$multiple_recipients = $this->get_group_recipients();
+
+		$email_data = [
+			$this->get_subject(),
+			$this->get_body(),
+			$this->get_headers(),
+			$this->get_attachments(),
+		];
+
+		array_unshift( $email_data, $multiple_recipients );
+
+		if ( $sync ) {
+			$this->execute( $email_data );
+		} else {
+			$background_job = $background_job ?? new Sw_Email_Background_Job();
+
+			$background_job->push_to_queue( $email_data );
+
+			$background_job->save()->dispatch();
 		}
 	}
 
@@ -48,8 +100,18 @@ class Sw_Mail_Service {
 		return $this;
 	}
 
-	public function get_recipients(): array {
+	public function get_recipients(): ?array {
 		return $this->recipients_emails;
+	}
+
+	public function add_group_recipients( array $recipients_emails ): self {
+		$this->group_recipients_emails = array_merge( $this->group_recipients_emails ?? [], $recipients_emails );
+
+		return $this;
+	}
+
+	public function get_group_recipients(): ?array {
+		return $this->group_recipients_emails;
 	}
 
 	public function set_from( array $from ): self {
@@ -65,7 +127,7 @@ class Sw_Mail_Service {
 		return $this;
 	}
 
-	public function get_from(): array {
+	public function get_from(): ?array {
 		return $this->from;
 	}
 
@@ -82,7 +144,7 @@ class Sw_Mail_Service {
 		return $this;
 	}
 
-	public function get_reply_to(): array {
+	public function get_reply_to(): ?array {
 		return $this->reply_to;
 	}
 
@@ -99,7 +161,7 @@ class Sw_Mail_Service {
 		return $this;
 	}
 
-	public function get_cc_emails(): array {
+	public function get_cc_emails(): ?array {
 		return $this->cc_emails;
 	}
 
@@ -116,7 +178,7 @@ class Sw_Mail_Service {
 		return $this;
 	}
 
-	public function get_bcc_emails(): array {
+	public function get_bcc_emails(): ?array {
 		return $this->bcc_emails;
 	}
 
@@ -127,7 +189,7 @@ class Sw_Mail_Service {
 	}
 
 	public function get_subject(): string {
-		return $this->subject;
+		return $this->subject ?? '';
 	}
 
 	public function set_body( string $email_body ): self {
@@ -137,7 +199,7 @@ class Sw_Mail_Service {
 	}
 
 	public function get_body(): string {
-		return $this->body;
+		return $this->body ?? '';
 	}
 
 	public function add_attachment( string $attachment_file_path ): self {
