@@ -74,8 +74,9 @@ Below is an example of how to build and send an email using the provided methods
 ```
 $mailer = new \Victoria\Utilities\Sw_Mail_Service();
 
-$mailer->add_recipient('recipient.1@gmail.com')
-    ->add_recipient('recipient.2@gmail.com')
+$mailer->add_recipient('recipient.1@statenweb.com')
+    ->add_recipient('recipient.2@statenweb.com')
+    ->add_group_recipients(['recipient.3@statenweb.com', 'recipient.4@statenweb.com'])
     ->set_subject('Hello from StatenWeb')
     ->set_body('Welcome to StatenWeb. This text can be HTML.')
     ->set_from(['name' => 'StetenWeb', 'email' => 'hello@statenweb.com'])
@@ -87,6 +88,7 @@ $mailer->add_recipient('recipient.1@gmail.com')
     ->add_attachment( wp_get_upload_dir()['basedir'] . '/example_file_2.csv' )
     ->send_mail();
 ```
+Note: Using `add_recipient( string $recipient_email )` sends an individual email to each recipient separately. If you want to send a single email to multiple recipients at once, use `add_group_recipients( array $recipients_emails )` instead.
 
 #### Bringing It All Together
 The main `App` class is responsible for registering and booting providers (e.g. `Blocks_Provider`). Each provider will then load the classes it has registered (e.g. the `Hero` block class). These classes are passed to handlers, which determine which methods to invoke by checking for the `Handler_Method` attribute on the methods of the instances.
