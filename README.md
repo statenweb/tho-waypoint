@@ -68,7 +68,7 @@ For detailed usage, refer to the package's documentation.
 If you need to create custom background jobs or asynchronous request classes, extend the `Background_Processing` class. Make sure to set the `protected ?string $async_request_class_name` and `protected ?string $background_job_class_name` properties accordingly.
 Don’t forget to register your background processing class in the `Background_Processing_Provider` class.
 
-#### SW_Mailer
+#### Sw_Mail_Service Class
 If you need to send emails, you can utilize the `Sw_Mail_Service` class. By default, this class will push the email-sending process to a background job. If you prefer to send emails synchronously (without using background processing), pass the `$sync` parameter as `true` when calling `send_mail()`, like so `send_mail( sync: true )`.
 Below is an example of how to build and send an email using the provided methods:
 ```
