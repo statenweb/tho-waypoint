@@ -3,8 +3,11 @@
 namespace Victoria\Utilities;
 
 use Victoria\Background_Processing\Sw_Email_Background_Processing_Classes\Sw_Email_Background_Job;
+use Victoria\Interfaces\Mailable;
 
 class Sw_Mail_Service {
+	private ?array $users = null;
+	private ?array $group_users = null;
 	private ?array $recipients_emails = null;
 	private ?array $group_recipients_emails = null;
 	private ?array $from = null;
@@ -14,39 +17,49 @@ class Sw_Mail_Service {
 	private string $subject;
 	private string $body;
 	private ?array $attachments = null;
+	private ?Mailable $mail_template = null;
 	private ?array $headers = null;
 
 	public function send_mail( bool $sync = false ): void {
-		if ( ! $this->get_recipients() && ! $this->get_group_recipients() ) {
-			throw new \RuntimeException( 'Email cannot be sent: no recipients found. Ensure that at least one valid recipient is provided before attempting to send the email.' );
-		}
-
-		if ( $this->get_recipients() ) {
-			$this->handle_single_recipients( $sync );
-		}
-
-		if ( $this->get_group_recipients() ) {
-			$this->handle_group_recipients( $sync );
-		}
+		$this->handle_single_recipients( $sync );
+		$this->handle_group_recipients( $sync );
 	}
 
 	private function handle_single_recipients( bool $sync ): void {
-		$recipients = $this->get_recipients();
+		$recipients = $this->get_recipients_emails() ?? [];
 
-		$email_data = [
-			$this->get_subject(),
-			$this->get_body(),
-			$this->get_headers(),
-			$this->get_attachments(),
-		];
+		$users = $this->get_users() ?? [];
+
+		$recipients = array_merge(
+			array_map(
+				fn ( $user ) => [
+					'email' => $user->user_email,
+					'wp_user' => $user,
+				],
+				$users
+			),
+			array_map(
+				fn ( $recipient ) => [
+					'email' => $recipient,
+					'wp_user' => null,
+				],
+				$recipients
+			)
+		);
 
 		if ( $sync ) {
 			array_walk(
 				$recipients,
-				function ( $recipient ) use ( $email_data ) {
-					array_unshift( $email_data, $recipient );
-
-					$this->execute( $email_data );
+				function ( $recipient ) {
+					$this->execute(
+						[
+							$recipient['email'],
+							$this->get_subject( $recipient['wp_user'] ?? null ),
+							$this->get_body( $recipient['wp_user'] ?? null ),
+							$this->get_headers(),
+							$this->get_attachments(),
+						]
+					);
 				}
 			);
 		} else {
@@ -54,10 +67,16 @@ class Sw_Mail_Service {
 
 			array_walk(
 				$recipients,
-				function ( $recipient ) use ( $email_data, $background_job ) {
-					array_unshift( $email_data, $recipient );
-
-					$background_job->push_to_queue( $email_data );
+				function ( $recipient ) use ( $background_job ) {
+					$background_job->push_to_queue(
+						[
+							$recipient['email'],
+							$this->get_subject( $recipient['wp_user'] ?? null ),
+							$this->get_body( $recipient['wp_user'] ?? null ),
+							$this->get_headers(),
+							$this->get_attachments(),
+						]
+					);
 				}
 			);
 
@@ -66,7 +85,17 @@ class Sw_Mail_Service {
 	}
 
 	private function handle_group_recipients( bool $sync ): void {
-		$multiple_recipients = $this->get_group_recipients();
+		$group_recipients = $this->get_group_recipients_emails() ?? [];
+
+		$group_users = $this->get_group_users() ?? [];
+
+		$recipients = array_merge(
+			array_map(
+				fn ( $user ) => $user->user_email,
+				$group_users
+			),
+			$group_recipients
+		);
 
 		$email_data = [
 			$this->get_subject(),
@@ -75,7 +104,7 @@ class Sw_Mail_Service {
 			$this->get_attachments(),
 		];
 
-		array_unshift( $email_data, $multiple_recipients );
+		array_unshift( $email_data, $recipients );
 
 		if ( $sync ) {
 			$this->execute( $email_data );
@@ -94,23 +123,93 @@ class Sw_Mail_Service {
 		return $result;
 	}
 
-	public function add_recipient( string $recipient_email ): self {
-		$this->recipients_emails[] = $recipient_email;
+	public function add_user( int|\WP_User ...$users ): self {
+		$this->users = array_filter(
+			array_merge(
+				array_map(
+					fn ( $user ) => $this->get_wp_user( $user ),
+					$users
+				),
+				$this->users ?? []
+			)
+		);
 
 		return $this;
 	}
 
-	public function get_recipients(): ?array {
+	public function get_users(): ?array {
+		return $this->users;
+	}
+
+	public function add_group_users( array $users ): self {
+		$users = array_map(
+			fn ( $user ) => $this->get_wp_user( $user ),
+			$users
+		);
+
+		$this->group_users = array_merge( $this->group_users ?? [], $users );
+
+		return $this;
+	}
+
+	public function get_group_users(): ?array {
+		return $this->group_users;
+	}
+
+	private function get_wp_user( int|\WP_User $user ): \WP_User {
+		if ( is_int( $user ) ) {
+			$user = get_userdata( $user );
+		}
+
+		if ( ! $user instanceof \WP_User ) {
+			throw new \InvalidArgumentException( 'Unable to add user as recipient: WP User does not exist.' );
+		}
+
+		return $user;
+	}
+
+	public function add_recipient_email( string ...$recipient_emails ): self {
+		$this->recipients_emails = array_filter(
+			array_merge(
+				array_map(
+					function ( $recipient_email ) {
+						if ( ! is_email( $recipient_email ) ) {
+							throw new \InvalidArgumentException( 'Unable to add recipient: invalid email address.' );
+						}
+
+						$this->recipients_emails[] = sanitize_email( $recipient_email );
+					},
+					$recipient_emails
+				),
+				$this->recipients_emails ?? []
+			)
+		);
+
+		return $this;
+	}
+
+	public function get_recipients_emails(): ?array {
 		return $this->recipients_emails;
 	}
 
-	public function add_group_recipients( array $recipients_emails ): self {
+	public function add_group_recipients_emails( array $recipients_emails ): self {
+		$recipients_emails = array_map(
+			function ( $recipients_email ) {
+				if ( ! is_email( $recipients_email ) ) {
+					throw new \InvalidArgumentException( 'Cannot add recipient. Not valid email address.' );
+				}
+
+				return sanitize_email( $recipients_email );
+			},
+			$recipients_emails
+		);
+
 		$this->group_recipients_emails = array_merge( $this->group_recipients_emails ?? [], $recipients_emails );
 
 		return $this;
 	}
 
-	public function get_group_recipients(): ?array {
+	public function get_group_recipients_emails(): ?array {
 		return $this->group_recipients_emails;
 	}
 
@@ -188,8 +287,10 @@ class Sw_Mail_Service {
 		return $this;
 	}
 
-	public function get_subject(): string {
-		return $this->subject ?? '';
+	public function get_subject( ?\WP_User $recipient = null ): string {
+		return $this->mail_template
+			? wp_kses_post( $this->mail_template->get_subject( $recipient ) )
+			: ( wp_kses_post( $this->subject ) ?? '' );
 	}
 
 	public function set_body( string $email_body ): self {
@@ -198,8 +299,10 @@ class Sw_Mail_Service {
 		return $this;
 	}
 
-	public function get_body(): string {
-		return $this->body ?? '';
+	public function get_body( ?\WP_User $recipient = null ): string {
+		return $this->mail_template
+			? wp_kses_post( $this->mail_template->get_body( $recipient ) )
+			: ( wp_kses_post( $this->body ) ?? '' );
 	}
 
 	public function add_attachment( string $attachment_file_path ): self {
@@ -210,6 +313,12 @@ class Sw_Mail_Service {
 
 	public function get_attachments(): array {
 		return $this->attachments ?? [];
+	}
+
+	public function set_mail_template( Mailable $mail_template ): self {
+		$this->mail_template = $mail_template;
+
+		return $this;
 	}
 
 	public function add_header( string $header ): self {

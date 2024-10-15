@@ -6,5 +6,5 @@ use Victoria\Attributes\Handler_Method;
 
 interface Initiable {
 	#[Handler_Method]
-	public function init();
+	public function init(): void;
 }
