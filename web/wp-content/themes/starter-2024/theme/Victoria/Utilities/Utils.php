@@ -2,11 +2,6 @@
 
 namespace Victoria\Utilities;
 
-use StoutLogic\AcfBuilder\FieldsBuilder;
-use Victoria\Data_Structures\Post_Types\Location;
-use Victoria\Settings\Site;
-use Victoria\Maps\Latitude_and_Longitude;
-
 class Utils {
 
 
@@ -339,54 +334,5 @@ class Utils {
 			$prefix . '90%' . $suffix => '90%',
 			$prefix . '100%' . $suffix => '100%',
 		];
-	}
-
-	public static function lat_lng_by_address( $address ) {
-		if ( ! trim( $address ) ) {
-			return false;
-		}
-		$latitude_and_longitude = new Latitude_and_Longitude( $address, Site::get( 'geocode_maps_co_api_key' ) );
-		try {
-			$latitude_and_longitude->process();
-		} catch ( \Exception $e ) {
-			throw new \Exception( $e->getMessage() );
-		}
-
-		if ( ! $latitude_and_longitude->get_lat_lng() ) {
-			return false;
-		}
-		$lat = $latitude_and_longitude->get_lat_lng()->lat;
-		$lng = $latitude_and_longitude->get_lat_lng()->lng;
-		return array(
-			'lat' => $lat,
-			'lng' => $lng,
-		);
-	}
-
-
-	public static function get_provider_location_map( $force = true ) {
-		$transient_key = Location::LOCATION_MAP_TRANSIENT_KEY;
-		$ttl = MINUTE_IN_SECONDS * 5;
-		$provider_map = get_transient( $transient_key );
-		if ( ! $provider_map || $force ) {
-			$provider_map = [];
-			foreach ( get_posts(
-				[
-					'post_type' => 'location',
-					'posts_per_page' => 20,
-				]
-			) as $location ) {
-				$providers = get_field( 'providers', $location );
-				foreach ( (array) $providers as $provider ) {
-					if ( ! array_key_exists( $provider, $provider_map ) ) {
-						$provider_map[ $provider ] = [];
-					}
-					$provider_map[ $provider ][] = $location->ID;
-				}
-			}
-			set_transient( $transient_key, $provider_map, $ttl );
-		}
-
-		return $provider_map;
 	}
 }
