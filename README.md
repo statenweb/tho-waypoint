@@ -71,14 +71,14 @@ Don’t forget to register your background processing class in the `Background_P
 #### Sw_Mail_Service Class
 If you need to send emails, you can utilize the `Sw_Mail_Service` class. By default, this class will push the email-sending process to a background job. If you prefer to send emails synchronously (without using background processing), pass the `$sync` parameter as `true` when calling `send_mail()`, like so `send_mail( sync: true )`.
 
+Note: Using `add_recipient_email( string $recipient_email )` or `add_user( int|\WP_User $user )` sends an individual email to each recipient separately. If you want to send a single email to multiple recipients at once, use `add_group_recipients_emails( array $recipients_emails )` or `add_group_users( array $users )` instead.
+
 #### Mail_Template Class
 The `Mail_Template` class is designed to help you define email templates. It uses the `Placeholders_Replacement` trait, which allows you to replace placeholders in the template.
 
-Note: Using `add_recipient_email( string $recipient_email )` or `add_user( int|\WP_User $user )` sends an individual email to each recipient separately. If you want to send a single email to multiple recipients at once, use `add_group_recipients_emails( array $recipients_emails )` or `add_group_users( array $users )` instead.
+Placeholders should be wrapped in curly brackets `{}` (e.g., `{placeholder}`). If you want to insert a link as a replacement, you should add a `text` attribute like `{login_link text='Click here to login'}`. Additional attributes, such as `class='some-class'`, can also be added.
 
-Note: Placeholders should be wrapped in curly brackets `{}` (e.g., `{placeholder}`). If you want to insert a link as a replacement, you should add a `text` attribute like `{login_link text='Click here to login'}`. Additional attributes, such as `class="some-class"`, can also be added.
-
-Placeholders are defined as an array, where the keys represent the placeholder names, and the values are their corresponding replacements. The replacements can be either strings or callback functions.
+Placeholders are defined as an array, where the keys represent the placeholder names, and the values are their corresponding replacements. The replacements can be either strings or callback functions. When using callback functions, a `WP_User` object will be injected as a parameter into the callback, allowing you to dynamically customize the replacement based on user-specific data.
 
 Below is an example of how to build and send an email using the provided methods:
 ```
