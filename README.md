@@ -70,25 +70,61 @@ Don’t forget to register your background processing class in the `Background_P
 
 #### Sw_Mail_Service Class
 If you need to send emails, you can utilize the `Sw_Mail_Service` class. By default, this class will push the email-sending process to a background job. If you prefer to send emails synchronously (without using background processing), pass the `$sync` parameter as `true` when calling `send_mail()`, like so `send_mail( sync: true )`.
+
+#### Mail_Template Class
+The `Mail_Template` class is designed to help you define email templates. It uses the `Placeholders_Replacement` trait, which allows you to replace placeholders in the template.
+
+Note: Using `add_recipient_email( string $recipient_email )` or `add_user( int|\WP_User $user )` sends an individual email to each recipient separately. If you want to send a single email to multiple recipients at once, use `add_group_recipients_emails( array $recipients_emails )` or `add_group_users( array $users )` instead.
+
+Note: Placeholders should be wrapped in curly brackets `{}` (e.g., `{placeholder}`). If you want to insert a link as a replacement, you should add a `text` attribute like `{login_link text='Click here to login'}`. Additional attributes, such as `class="some-class"`, can also be added.
+
+Placeholders are defined as an array, where the keys represent the placeholder names, and the values are their corresponding replacements. The replacements can be either strings or callback functions.
+
 Below is an example of how to build and send an email using the provided methods:
 ```
+// Sending emails without mail templates and WP User
 $mailer = new \Victoria\Utilities\Sw_Mail_Service();
 
-$mailer->add_recipient('recipient.1@statenweb.com')
-    ->add_recipient('recipient.2@statenweb.com')
-    ->add_group_recipients(['recipient.3@statenweb.com', 'recipient.4@statenweb.com'])
-    ->set_subject('Hello from StatenWeb')
-    ->set_body('Welcome to StatenWeb. This text can be HTML.')
-    ->set_from(['name' => 'StetenWeb', 'email' => 'hello@statenweb.com'])
-    ->set_reply_to(['name' => 'StetenWeb', 'email' => 'hello@statenweb.com'])
-    ->add_cc_email(['name' => 'Operations', 'email' => 'operations@statenweb.com'])
-    ->add_cc_email(['name' => 'Marketing', 'email' => 'marketing@statenweb.com'])
-    ->add_bcc_email(['name' => 'developers', 'email' => 'developers@statenweb.com'])
-    ->add_attachment( wp_get_upload_dir()['basedir'] . '/example_file_1.csv' )
-    ->add_attachment( wp_get_upload_dir()['basedir'] . '/example_file_2.csv' )
+$mailer->add_recipient_email( 'recipient.1@statenweb.com' )                                         // recipient.1@statenweb.com will get individual email
+    ->add_recipient_email( 'recipient.2@statenweb.com', 'recipient.3@statenweb.com' )               // recipient.2@statenweb.com and recipient.3@statenweb.com will get individual emails
+    ->add_group_recipients_emails( [ 'recipient.4@statenweb.com', 'recipient.5@statenweb.com' ] )   // recipient.4@statenweb.com and recipient.5@statenweb.com will get same email
+    ->set_subject( 'Hello from StatenWeb' )
+    ->set_body( 'Welcome to StatenWeb. This text can be HTML.' )
+    ->set_from( [ 'name' => 'StetenWeb', 'email' => 'hello@statenweb.com' ] )
+    ->set_reply_to( [ 'name' => 'StetenWeb', 'email' => 'hello@statenweb.com' ] )
+    ->add_cc_email( [ 'name' => 'Operations', 'email' => 'operations@statenweb.com' ] )
+    ->add_cc_email( [ 'name' => 'Marketing', 'email' => 'marketing@statenweb.com' ] )
+    ->add_bcc_email( [ 'name' => 'developers', 'email' => 'developers@statenweb.com' ] )
+    ->send_mail();
+
+
+
+// Sending emails using mail templates and WP User
+$mailer = new \Victoria\Utilities\Sw_Mail_Service();
+
+$mail_template = new \Victoria\Mails\Sw_Mail_Template(
+    subject: 'Hello {first_name}',
+    body: 'Welcome to StatenWeb! Mr. {function_callback} you can login here {login text="Click here to login"}. You can pass additional attributes to link {pass_reset text="Click here to reset password" class="some-class"}',
+    attachments: [ wp_get_upload_dir()['basedir'] . '/example_file_1.csv' ],
+    placeholders: [
+        '{first_name}' => 'Marko',
+        '{function_callback}' => fn ( $user ) => $user?->display_name,
+        '{login}' => get_login_link(),
+        '{pass_reset}' => get_pass_reset_link()
+    ]
+);
+
+$mailer->add_user( $user1 )                     // $user1 will get individual email
+    ->add_user( $user2, $user3 )                // $user2 and $user3 will get individual emails
+    ->add_group_users( [ $user4, $user5 ] )     // $user4 and $user5 will get same email
+    ->set_mail_template( $mail_template )
+    ->set_from( [ 'name' => 'StetenWeb', 'email' => 'hello@statenweb.com' ] )
+    ->set_reply_to( [ 'name' => 'StetenWeb', 'email' => 'hello@statenweb.com' ] )
+    ->add_cc_email( [ 'name' => 'Operations', 'email' => 'operations@statenweb.com' ] )
+    ->add_cc_email( [ 'name' => 'Marketing', 'email' => 'marketing@statenweb.com' ] )
+    ->add_bcc_email( [ 'name' => 'developers', 'email' => 'developers@statenweb.com' ] )
     ->send_mail();
 ```
-Note: Using `add_recipient( string $recipient_email )` sends an individual email to each recipient separately. If you want to send a single email to multiple recipients at once, use `add_group_recipients( array $recipients_emails )` instead.
 
 #### Bringing It All Together
 The main `App` class is responsible for registering and booting providers (e.g. `Blocks_Provider`). Each provider will then load the classes it has registered (e.g. the `Hero` block class). These classes are passed to handlers, which determine which methods to invoke by checking for the `Handler_Method` attribute on the methods of the instances.

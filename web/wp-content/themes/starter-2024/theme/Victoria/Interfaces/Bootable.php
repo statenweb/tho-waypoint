@@ -3,5 +3,5 @@
 namespace Victoria\Interfaces;
 
 interface Bootable {
-	public function boot();
+	public function boot(): void;
 }
