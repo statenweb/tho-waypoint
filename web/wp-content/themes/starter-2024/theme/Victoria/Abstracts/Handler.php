@@ -2,6 +2,6 @@
 
 namespace Victoria\Abstracts;
 
-abstract class Handler {
-	abstract public static function handle( $class_instance ): void;
-}
+use Victoria\Interfaces\Handleable;
+
+abstract class Handler implements Handleable {}
