@@ -6,7 +6,7 @@ use Victoria\Abstracts\Handler;
 use Victoria\Attributes\Handler_Method;
 
 class Trait_Handler extends Handler {
-	public static function handle( $class_instance ): void {
+	public function handle( $class_instance ): void {
 		$class_traits = self::get_class_traits( $class_instance );
 
 		if ( ! $class_traits ) {

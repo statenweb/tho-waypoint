@@ -2,8 +2,7 @@
 
 namespace Victoria\Abstracts;
 
-use Victoria\Handlers\Interface_Handler;
-use Victoria\Handlers\Trait_Handler;
+use Victoria\Handlers\Sw_Handler_Manager;
 use Victoria\Interfaces\Bootable;
 
 abstract class Provider implements Bootable {
@@ -19,9 +18,7 @@ abstract class Provider implements Bootable {
 			function ( $item_class ) {
 				$item_instance = new $item_class();
 
-				Interface_Handler::handle( $item_instance );
-
-				Trait_Handler::handle( $item_instance );
+				( new Sw_Handler_Manager() )->process_handlers( $item_instance );
 			}
 		);
 	}

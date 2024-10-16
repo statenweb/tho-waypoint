@@ -6,7 +6,7 @@ use Victoria\Abstracts\Handler;
 use Victoria\Attributes\Handler_Method;
 
 class Interface_Handler extends Handler {
-	public static function handle( $class_instance ): void {
+	public function handle( $class_instance ): void {
 		$reflection_class = new \ReflectionClass( $class_instance );
 
 		$reflection_class_interfaces = $reflection_class->getInterfaces();
