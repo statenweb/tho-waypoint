@@ -47,41 +47,28 @@ class Sw_Mail_Service {
 			)
 		);
 
-		if ( $sync ) {
-			array_walk(
-				$recipients,
-				function ( $recipient ) {
-					$this->execute(
-						[
-							$recipient['email'],
-							$this->get_subject( $recipient['wp_user'] ?? null ),
-							$this->get_body( $recipient['wp_user'] ?? null ),
-							$this->get_headers(),
-							$this->get_attachments(),
-						]
-					);
-				}
-			);
-		} else {
-			$background_job = new Sw_Email_Background_Job();
+		$background_job = new Sw_Email_Background_Job();
 
-			array_walk(
-				$recipients,
-				function ( $recipient ) use ( $background_job ) {
-					$background_job->push_to_queue(
-						[
-							$recipient['email'],
-							$this->get_subject( $recipient['wp_user'] ?? null ),
-							$this->get_body( $recipient['wp_user'] ?? null ),
-							$this->get_headers(),
-							$this->get_attachments(),
-						]
-					);
-				}
-			);
+		array_walk(
+			$recipients,
+			function ( $recipient ) use ( $sync, $background_job ) {
+				$recipient_email_data = [
+					$recipient['email'],
+					$this->get_subject( $recipient['wp_user'] ?? null ),
+					$this->get_body( $recipient['wp_user'] ?? null ),
+					$this->get_headers(),
+					$this->get_attachments(),
+				];
 
-			$background_job->save()->dispatch();
-		}
+				if ( $sync ) {
+					$this->execute( $recipient_email_data );
+				} else {
+					$background_job->push_to_queue( $recipient_email_data );
+
+					$background_job->save()->dispatch();
+				}
+			}
+		);
 	}
 
 	private function handle_group_recipients( bool $sync ): void {
@@ -109,7 +96,7 @@ class Sw_Mail_Service {
 		if ( $sync ) {
 			$this->execute( $email_data );
 		} else {
-			$background_job = $background_job ?? new Sw_Email_Background_Job();
+			$background_job = new Sw_Email_Background_Job();
 
 			$background_job->push_to_queue( $email_data );
 
@@ -118,9 +105,7 @@ class Sw_Mail_Service {
 	}
 
 	public function execute( array $email_data ): bool {
-		$result = wp_mail( ...$email_data );
-
-		return $result;
+		return wp_mail( ...$email_data );
 	}
 
 	public function add_user( int|\WP_User ...$users ): self {
