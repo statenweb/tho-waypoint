@@ -48,3 +48,5 @@ web/wp-content/themes/astra
 .DS_Store
 
 web/wp-content/debug.log
+
+.idea/
