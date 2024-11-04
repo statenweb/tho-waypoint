@@ -10,7 +10,7 @@ $menu_id  = 'primary_menu';
 	<div class="largest-breakpoint:container w-full mx-auto flex justify-center w-full py-5 largest-bBreakpoint:px-0 px-5">
 		<div class="largest-breakpoint:basis-1/4">
 			<a aria-label="<?php esc_attr( bloginfo( 'name' ) ); ?>" href="<?php echo home_url( '/' ); ?>">
-				<?php echo wp_get_attachment_image( get_field( 'logo' ), 'full', false, [ 'class' => 'logo' ] ); ?>
+				<?php echo wp_get_attachment_image( get_theme_mod( 'custom_logo' ), 'full', false, [ 'class' => 'logo' ] ); ?>
 			</a>
 		</div>
 		<nav id="site-navigation" class="justify-end non-hamburger:mr-auto flex items-center grow-[5] non-hamburger:basis-3/4">
