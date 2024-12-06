@@ -20,7 +20,9 @@ class Main_Scripts_And_Styles extends Enqueue {
 			'sw',
 			apply_filters(
 				'sw_localize_script',
-				[]
+				[
+					'menu_style' => get_field( 'menu_style', 'option' ),
+				]
 			)
 		);
 	}
