@@ -41,8 +41,8 @@
   "require": {
     "php": ">=8.0",
     "roots/wp-config": "1.0.0",
-    "vlucas/phpdotenv": "^3.3",
-    "oscarotero/env": "^1.0",
+    "vlucas/phpdotenv": "^5",
+    "oscarotero/env": "^2",
     "statenweb-plugin/advanced-custom-fields-pro": "^6",
     "deliciousbrains-plugin/wp-migrate-db-pro": "^2.5",
     "wpackagist-plugin/stream": "^4",

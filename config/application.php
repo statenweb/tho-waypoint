@@ -9,28 +9,38 @@
  */
 
 use Roots\WPConfig\Config;
+use function Env\env;
 
+// USE_ENV_ARRAY + CONVERT_* + STRIP_QUOTES
+Env\Env::$options = 31;
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(0);
-/** @var string Directory containing all of the site's files */
+/**
+ * Directory containing all of the site's files
+ *
+ * @var string
+ */
 $root_dir = dirname(__DIR__);
 
-/** @var string Document Root */
+/**
+ * Document Root
+ *
+ * @var string
+ */
 $webroot_dir = $root_dir . '/web';
 
 /**
- * Expose global env() function from oscarotero/env
- */
-Env::init();
-
-/**
  * Use Dotenv to set required environment variables and load .env file in root
+ * .env.local will override .env if it exists
  */
-$dotenv = Dotenv\Dotenv::create($root_dir);
 if (file_exists($root_dir . '/.env')) {
+    $env_files = file_exists($root_dir . '/.env.local')
+        ? ['.env', '.env.local']
+        : ['.env'];
+
+    $dotenv = Dotenv\Dotenv::createImmutable($root_dir, $env_files, false);
+
     $dotenv->load();
+
     $dotenv->required(['WP_HOME', 'WP_SITEURL']);
     if (!env('DATABASE_URL')) {
         $dotenv->required(['DB_NAME', 'DB_USER', 'DB_PASSWORD']);
@@ -42,6 +52,23 @@ if (file_exists($root_dir . '/.env')) {
  * Default: production
  */
 define('WP_ENV', env('WP_ENV') ?: 'production');
+
+/**
+ * Infer WP_ENVIRONMENT_TYPE based on WP_ENV
+ */
+if (!env('WP_ENVIRONMENT_TYPE') && in_array(WP_ENV, ['production', 'staging', 'development', 'local'])) {
+    Config::define('WP_ENVIRONMENT_TYPE', WP_ENV);
+}
+
+Config::define( 'PDFTK_PATH', env( 'PDFTK_PATH' ) ?: '/usr/local/bin/pdftk' );
+if (env('AS3CF_SETTINGS_PROVIDER') && env('AS3CF_SETTINGS_ACCESS_KEY_ID') && env('AS3CF_SETTINGS_SECRET_ACCESS_KEY')) {
+    define('AS3CF_SETTINGS', serialize(array(
+        'provider' => env('AS3CF_SETTINGS_PROVIDER'),
+        'access-key-id' => env('AS3CF_SETTINGS_ACCESS_KEY_ID'), 
+        'secret-access-key' => env('AS3CF_SETTINGS_SECRET_ACCESS_KEY')
+    )));
+}
+
 Config::define( 'WPOSES_AWS_ACCESS_KEY_ID',     env('WPOSES_AWS_ACCESS_KEY_ID') );
 Config::define( 'WPOSES_AWS_SECRET_ACCESS_KEY', env('WPOSES_AWS_SECRET_ACCESS_KEY') );
 if ( env( 'WP_ROCKET_KEY' ) ) {
