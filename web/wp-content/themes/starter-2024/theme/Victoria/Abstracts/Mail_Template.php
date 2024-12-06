@@ -26,4 +26,8 @@ abstract class Mail_Template implements Mailable {
 	public function get_attachments(): ?array {
 		return $this->attachments;
 	}
+
+	public function get_placeholders(): ?array {
+		return $this->placeholders;
+	}
 }

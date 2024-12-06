@@ -3,10 +3,12 @@
 namespace Victoria\Traits;
 
 trait Placeholders_Replacement {
+	abstract public function get_placeholders(): ?array;
+
 	public function replace_placeholders( string $content, ?\WP_User $recipient = null ): string {
-		if ( ! empty( $this->placeholders ) ) {
+		if ( $placeholders = $this->get_placeholders() ) {
 			array_walk(
-				$this->placeholders,
+				$placeholders,
 				function ( $replacement, $placeholder ) use ( &$content, $recipient ) {
 					if ( $this->is_link_placeholder( $placeholder, $content ) ) {
 						$content = $this->replace_link_placeholder( $content, $placeholder, $replacement );
