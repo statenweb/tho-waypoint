@@ -171,4 +171,64 @@ document.addEventListener('DOMContentLoaded', function () {
 			toggle.setAttribute('aria-expanded', 'false');
 		});
 	}
+
+	document.querySelectorAll('.dropdown-menu').forEach(menu => {
+		const firstChild = menu.children[0];
+		const lastChild = menu.children[menu.children.length - 1];
+
+		if (firstChild) {
+			firstChild.addEventListener('keydown', function(event) {
+				if (event.key.toUpperCase() === 'TAB' && event.shiftKey) {
+
+					event.stopPropagation();
+
+					const dropdownMenuAncestor = firstChild.closest('.dropdown-menu');
+					if (dropdownMenuAncestor) {
+						const parent = dropdownMenuAncestor.parentNode;
+						const siblings = parent.children;
+
+						for (let i = 0; i < siblings.length; i++) {
+							const sibling = siblings[i];
+							if (sibling !== dropdownMenuAncestor && sibling.hasAttribute('aria-expanded')) {
+								sibling.setAttribute('aria-expanded', 'false');
+								// 'sibling' is the element you’re looking for
+								break;
+							}
+						}
+					}
+					// closeMenu(this);  // Directly use 'this' since it is bound to the element in the event listener
+				}
+			});
+		}
+
+		if (lastChild) {
+			lastChild.addEventListener('keydown', function(event) {
+				if (event.key.toUpperCase() === 'TAB' && !event.shiftKey) { // Ensure this handles non-shift + TAB
+					let close = true;
+					for (let i = 0; i < lastChild.children.length; i++) {
+						if(lastChild.children[i].getAttribute('aria-expanded') === 'true') {
+							close = false;
+						}
+					}
+					if(close){
+						const dropdownMenuAncestor = lastChild.closest('.dropdown-menu');
+						if (dropdownMenuAncestor) {
+							const parent = dropdownMenuAncestor.parentNode;
+							const siblings = parent.children;
+
+							for (let i = 0; i < siblings.length; i++) {
+								const sibling = siblings[i];
+								if (sibling !== dropdownMenuAncestor && sibling.hasAttribute('aria-expanded')) {
+									sibling.setAttribute('aria-expanded', 'false');
+									// 'sibling' is the element you’re looking for
+									break;
+								}
+							}
+						}
+					}
+
+				}
+			});
+		}
+	});
 });
