@@ -27,7 +27,6 @@ jobs:
         run: |
           cd ./web/wp-content/themes/starter-2024
           npm run lint
-        continue-on-error: true
       - name: Annotate Lint Results
         if: failure()
         run: |
