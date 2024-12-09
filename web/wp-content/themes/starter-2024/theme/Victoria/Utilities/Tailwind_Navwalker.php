@@ -190,12 +190,12 @@ class Tailwind_Navwalker extends \Walker_Nav_Menu {
 			$atts['href'] = ! empty( $item->url ) ? $item->url : '#';
 			// Items in dropdowns use .dropdown-item instead of .nav-link.
 			if ( $depth > 0 ) {
-				$atts['class'] = 'dropdown-item';
+				$atts['class'] = 'dropdown-item nav-link';
 			} else {
 				$atts['class'] = 'nav-link ';
 			}
 			if ( isset( $args->has_children ) && $args->has_children && 1 === $depth && $args->depth > 1 ) {
-				$atts['class'] = 'dropdown-toggle-l2 relative dropdown-item';
+				$atts['class'] = 'dropdown-toggle-l2 relative dropdown-item nav-link';
 				$atts['aria-haspopup'] = 'menu';
 				$atts['aria-expanded'] = 'false';
 				$atts['data-toggle']   = 'dropdown';
