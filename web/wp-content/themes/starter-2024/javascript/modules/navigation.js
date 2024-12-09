@@ -4,6 +4,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	// Get the menu style from the wp_localize_script
 	const menuStyle = sw?.menu_style ? sw.menu_style : 'click';
+
+	const transformUpperCaseCode = (event) => event?.code?.toUpperCase() || '';
+
 	function closeAllDropdowns() {
 		const dropdownToggles = document.querySelectorAll(
 			'.dropdown-toggle, .dropdown-toggle-l2'
@@ -18,9 +21,9 @@ document.addEventListener('DOMContentLoaded', function () {
 	 */
 
 	document.addEventListener('keyup', function (event) {
-		const upperCaseKeyPressed = event.key.toUpperCase();
-		if ('ESCAPE' === upperCaseKeyPressed || 27 === event.keyCode) {
-			// Check if the key is the Escape key
+		const upperCaseCodePressed = transformUpperCaseCode(event);
+		if ('ESCAPE' === upperCaseCodePressed || 27 === event.keyCode) {
+			// Check if the code is the Escape code
 			closeAllDropdowns();
 		}
 	});
@@ -43,9 +46,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	// Define the events to listen to
 	const eventsToListenTo = [];
-	addEventsToListenTo({ type: 'keyup', key: [' ', 'enter'] });
-	addEventsToListenTo({ type: 'keydown-space-prevent-default', key: [' '] });
-	addEventsToListenTo({ type: 'keyup', action: CLOSEALL, key: ['escape'] });
+	addEventsToListenTo({ type: 'keyup', code: ['space', 'enter'] });
+	addEventsToListenTo({
+		type: 'keydown-space-prevent-default',
+		code: ['space', 'enter'],
+	});
+	addEventsToListenTo({ type: 'keyup', action: CLOSEALL, code: ['escape'] });
 	if ('click' === menuStyle || !menuStyle) {
 		addEventsToListenTo({ type: 'click' });
 	}
@@ -63,15 +69,14 @@ document.addEventListener('DOMContentLoaded', function () {
 	 * @param eventObject
 	 */
 	function addEventsToListenTo(eventObject) {
-		const defaults = { action: TOGGLE, key: [] };
+		const defaults = { action: TOGGLE, code: [] };
 		eventObject = { ...defaults, ...eventObject };
+		eventObject.code = eventObject.code.map((item) => item.toUpperCase());
 		eventsToListenTo.push(eventObject);
 	}
 
 	// Get all the dropdown toggles
-	const dropdownToggles = document.querySelectorAll(
-		'[data-toggle="dropdown"]'
-	);
+	const dropdownToggles = document.querySelectorAll('.nav-link');
 
 	/**
 	 * Toggle the aria-expanded attribute of the dropdown toggle
@@ -107,21 +112,20 @@ document.addEventListener('DOMContentLoaded', function () {
 	 * @param dropdownToggle
 	 */
 	function handleMenuEvent(eventObject, dropdownToggle) {
-		const { action, key, type } = eventObject;
+		const { action, code, type } = eventObject;
 		let listenToEventType = type;
 		if ('keydown-space-prevent-default' === type) {
-			Array.from(
-				document.querySelectorAll(
-					'.dropdown-toggle, .dropdown-toggle-l2'
-				)
-			).forEach((menu) => {
-				menu.addEventListener('keydown', (event) => {
-					const upperCaseKeyPressed = event.key.toUpperCase();
-					if (' ' === upperCaseKeyPressed) {
-						event.preventDefault();
-					}
-				});
-			});
+			Array.from(document.querySelectorAll('.nav-link')).forEach(
+				(menu) => {
+					menu.addEventListener('keydown', (event) => {
+						const upperCaseCodePressed =
+							transformUpperCaseCode(event);
+						if (code.includes(upperCaseCodePressed)) {
+							event.preventDefault();
+						}
+					});
+				}
+			);
 			return;
 		}
 
@@ -160,26 +164,30 @@ document.addEventListener('DOMContentLoaded', function () {
 			);
 		}
 		dropdownToggle.addEventListener(listenToEventType, function (event) {
-			event.preventDefault();
 			event.stopPropagation();
-			const upperCaseKeyPressed = event.key.toUpperCase();
-			let shortCircuit = false;
+			const upperCaseCodePressed = transformUpperCaseCode(event);
+			const isDropdown = this.hasAttribute('aria-expanded');
+			if (isDropdown && 'click' === listenToEventType) {
+				event.preventDefault();
+			}
 
+			let shortCircuit = false;
 			if ('keyup' === type) {
 				shortCircuit = true;
 
 				// default to toggle
 
-				const keysToCheck = key.map((item) => item.toUpperCase()) || [];
+				const keysToCheck =
+					code.map((item) => item.toUpperCase()) || [];
 				switch (action) {
 					case CLOSEALL:
-						if (keysToCheck.includes(upperCaseKeyPressed)) {
+						if (keysToCheck.includes(upperCaseCodePressed)) {
 							closeAllDropdowns();
 						}
 						break;
 					case TOGGLE:
 					default:
-						if (keysToCheck.includes(upperCaseKeyPressed)) {
+						if (keysToCheck.includes(upperCaseCodePressed)) {
 							shortCircuit = false;
 						}
 				}
@@ -187,8 +195,11 @@ document.addEventListener('DOMContentLoaded', function () {
 			if (shortCircuit) {
 				return;
 			}
-
-			toggleElement.call(this);
+			if (isDropdown) {
+				toggleElement.call(this);
+				return;
+			}
+			this.click();
 		});
 	}
 
@@ -203,8 +214,8 @@ document.addEventListener('DOMContentLoaded', function () {
 		const lastChild = menu.children[menu.children.length - 1];
 		if (firstChild) {
 			firstChild.addEventListener('keydown', function (event) {
-				const upperCaseKeyPressed = event.key.toUpperCase();
-				if ('TAB' === upperCaseKeyPressed && event.shiftKey) {
+				const upperCaseCodePressed = transformUpperCaseCode(event);
+				if ('TAB' === upperCaseCodePressed && event.shiftKey) {
 					event.stopPropagation();
 
 					const dropdownMenuAncestor =
@@ -232,8 +243,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 		if (lastChild) {
 			lastChild.addEventListener('keydown', function (event) {
-				const upperCaseKeyPressed = event.key.toUpperCase();
-				if ('TAB' === upperCaseKeyPressed && !event.shiftKey) {
+				const upperCaseCodePressed = transformUpperCaseCode(event);
+				if ('TAB' === upperCaseCodePressed && !event.shiftKey) {
 					// Ensure this handles non-shift + TAB
 					let close = true;
 					for (let i = 0; i < lastChild.children.length; i++) {
