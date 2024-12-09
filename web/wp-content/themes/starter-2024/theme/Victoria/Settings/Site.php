@@ -53,7 +53,7 @@ class Site extends Setting {
 		$settings = new FieldsBuilder( $this->get_acf_field_unique_name( 'site-settings' ) );
 
 		$settings
-			->addTab('general', ['placement' => 'top'])
+			->addTab( 'general', [ 'placement' => 'top' ] )
 			->addImage(
 				'logo',
 				[
@@ -69,14 +69,17 @@ class Site extends Setting {
 					'instructions' => 'If blank, it will use the main logo',
 				]
 			)
-			->addTab('navigation', ['placement' => 'top'])
-			->addSelect('navigation-style', [
-				'label' => 'Navigation Style',
-				'choices' => [
-					'hover' => 'Hover',
-					'click' => 'Click',
-				],
-			])
+			->addTab( 'navigation', [ 'placement' => 'top' ] )
+			->addSelect(
+				'navigation-style',
+				[
+					'label' => 'Navigation Style',
+					'choices' => [
+						'hover' => 'Hover',
+						'click' => 'Click',
+					],
+				]
+			)
 
 			->setLocation( 'options_page', '==', self::SLUG );
 
@@ -86,5 +89,4 @@ class Site extends Setting {
 	/**
 	 * @todo add in a utility getter for these settings
 	 */
-
 }

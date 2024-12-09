@@ -29,12 +29,12 @@
 		"touch": "^3.1.0"
 	},
 	"scripts": {
-		"lint:eslint": "eslint ./javascript/**/*.js  --no-ignore --ignore-pattern '*.min.js'",
-		"lint-fix:eslint": "eslint ./javascript/**/*.js  --fix --ignore-pattern '*.min.js'",
-		"lint:prettier": "prettier --check './javascript/**/*.js' --ignore-path .eslintignore",
-		"lint-fix:prettier": "prettier --write './javascript/**/*.js' --ignore-path .eslintignore",
-		"lint": "eslint ./javascript/**/*.js  --no-ignore --ignore-pattern '*.min.js' && prettier --check './javascript/**/*.js' --ignore-path .eslintignore",
-		"lint-fix": "eslint ./javascript/**/*.js  --fix --ignore-pattern '*.min.js' && prettier --write './javascript/**/*.js' --ignore-path .eslintignore",
+		"lint:eslint": "eslint ./javascript/**/*.js ./theme/js/**/*.js  --ignore-pattern '*.min.js' ",
+		"lint-fix:eslint": "eslint ./javascript/**/*.js ./theme/js/**/*.js  --fix --ignore-pattern '*.min.js'",
+		"lint:prettier": "prettier --check './javascript/**/*.js' './theme/js/**/*.js' --ignore-path .eslintignore",
+		"lint-fix:prettier": "prettier --write './javascript/**/*.js' './theme/js/**/*.js' --ignore-path .eslintignore",
+		"lint": "eslint ./javascript/**/*.js ./theme/js/**/*.js  --no-ignore --ignore-pattern '*.min.js' && prettier --check './javascript/**/*.js' --ignore-path .eslintignore",
+		"lint-fix": "eslint ./javascript/**/*.js ./theme/js/**/*.js  --fix --ignore-pattern '*.min.js' && prettier --write './javascript/**/*.js' --ignore-path .eslintignore",
 		"development:tailwind:frontend": "npx tailwindcss --postcss -i ./tailwind/tailwind.css -c ./tailwind/tailwind.config.js -o ./theme/style.css",
 		"development:tailwind:editor": "cross-env _TW_TARGET=editor npx tailwindcss --postcss -i ./tailwind/tailwind.css -c ./tailwind/tailwind.config.js -o ./theme/style-editor.css",
 		"development:tailwind:editor:extra": "cross-env _TW_TARGET=editor npx tailwindcss --postcss -i tailwind/tailwind-editor-extra.css -c ./tailwind/tailwind.config.js -o ./theme/style-editor-extra.css",

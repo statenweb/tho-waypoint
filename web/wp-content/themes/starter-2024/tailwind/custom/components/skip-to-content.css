@@ -1,0 +1,4 @@
+body .skip-to-content:focus {
+    @apply fixed z-50 top-6 left-2 p-4 bg-white text-black w-auto h-auto border-2 border-black;
+    clip:auto;
+}
