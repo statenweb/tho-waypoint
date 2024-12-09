@@ -25,7 +25,7 @@
 <?php wp_body_open(); ?>
 
 <div id="page">
-	<a href="#content" class="sr-only"><?php esc_html_e( 'Skip to content', '_tw' ); ?></a>
+	<a href="#content" class="sr-only skip-to-content"><?php esc_html_e( 'Skip to content', '_tw' ); ?></a>
 
 	<?php get_template_part( 'template-parts/layout/header', 'content' ); ?>
 

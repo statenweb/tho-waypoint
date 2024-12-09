@@ -37,8 +37,8 @@ class Tailwind_Navwalker extends \Walker_Nav_Menu {
 		$indent = str_repeat( $t, $depth );
 		// Default class to add to the file.
 		$class_names = '';
-		$classes_depth_1 = array( 'dropdown-menu', 'l1', 'hidden', 'lg:shadow-2xl' );
-		$classes_depth_2 = array( 'dropdown-menu', 'l2', 'ml-5' );
+		$classes_depth_1 = array( 'dropdown-menu', 'l1', 'lg:shadow-2xl' );
+		$classes_depth_2 = array( 'dropdown-menu', 'l2' );
 		/**
 		 * Filters the CSS class(es) applied to a menu list element.
 		 *
@@ -115,7 +115,7 @@ class Tailwind_Navwalker extends \Walker_Nav_Menu {
 		$classes = self::seporate_linkmods_and_icons_from_classes( $classes, $linkmod_classes, $icon_classes, $depth );
 
 		// Join any icon classes plucked from $classes into a string.
-		$icon_class_string = join( ' ', $icon_classes );
+		//      $icon_class_string = join( ' ', $icon_classes );
 
 		/**
 		 * Filters the arguments for a single nav menu item.
@@ -197,6 +197,8 @@ class Tailwind_Navwalker extends \Walker_Nav_Menu {
 			if ( isset( $args->has_children ) && $args->has_children && 1 === $depth && $args->depth > 1 ) {
 				$atts['class'] = 'dropdown-toggle-l2 relative dropdown-item';
 				$atts['aria-haspopup'] = 'menu';
+				$atts['aria-expanded'] = 'false';
+				$atts['data-toggle']   = 'dropdown';
 
 			}
 		}
@@ -244,7 +246,7 @@ class Tailwind_Navwalker extends \Walker_Nav_Menu {
 		$icon_html = '';
 		if ( ! empty( $icon_class_string ) ) {
 			// append an <i> with the icon classes to what is output before links.
-			$icon_html = '<i class="' . esc_attr( $icon_class_string ) . '" aria-hidden="true"></i> ';
+			//          $icon_html = '<i class="' . esc_attr( $icon_class_string ) . '" aria-hidden="true"></i> ';
 		}
 
 		/** This filter is documented in wp-includes/post-template.php */
@@ -289,7 +291,7 @@ class Tailwind_Navwalker extends \Walker_Nav_Menu {
 
 		$item_output .= isset( $args->after ) ? $args->after : '';
 		if ( isset( $args->has_children ) && $args->has_children ) {
-			$item_output .= '<span class="dropdown-icon" role="button" tabindex="-1"><span></span></span>';
+			//          $item_output .= '<span class="dropdown-icon" role="button" tabindex="-1"><span></span></span>';
 		}
 
 		/**

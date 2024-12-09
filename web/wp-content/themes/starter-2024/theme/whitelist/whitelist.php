@@ -427,7 +427,7 @@
 <div class="h-[80vh]"></div>
 <div class="h-[90vh]"></div>
 <div class="h-[100vh]"></div>
-
+<div class="menu-list mobile-active"></div>
                 <div class="min-h-[90vh]"></div>
                 <div class="min-h-[100vh]"></div>
 <div class=" hover:bg-primary custom-transition leading-[150%] leading-[125%] !mx-0 !px-0"></div>
@@ -439,4 +439,4 @@
 <div class="text-body-text-a"><a href="#"></a></div>
 <div class="text-white-a"><a href="#"></a></div>
 <div class="offset-shape font-heading font-inter"></div>
-<div class="[&_ul]:lg:flex lg:[&_ul]:flex"></div>
+<div class="[&_ul]:lg:flex lg:[&_ul]:flex mobile-only:!translate-y-0"></div>

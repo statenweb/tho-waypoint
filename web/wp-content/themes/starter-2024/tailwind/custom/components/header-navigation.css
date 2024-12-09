@@ -1,0 +1,67 @@
+.menu-list {
+    @apply transition flex flex-col items-center;
+    @apply lg:justify-end lg:space-x-0 lg:flex-row;
+    @apply hamburger:w-full hamburger:bg-white hamburger:h-screen hamburger:inset-0 hamburger:fixed hamburger:-translate-y-full hamburger:space-y-12 hamburger:text-2xl hamburger:pt-32;
+}
+
+.menu-expanded .menu-list {
+    @apply mobile-only:translate-y-0;
+}
+
+.header-navigation a {
+    @apply text-lg block px-5 py-3
+}
+
+.header-navigation > .menu-item-has-children {
+    @apply lg:pr-[18px];
+}
+
+.menu-item {
+    @apply relative;
+    @apply hamburger:w-full hamburger:text-center;
+}
+
+.dropdown-menu:not(.l2) .menu-item {
+    @apply first:mt-0 my-3 last:mb-0;
+}
+
+.menu-list .l2 {
+    @apply px-2 py-3 border-gray-300 border-2 my-3;
+
+}
+
+.menu-list .l2 .menu-item {
+    @apply px-0 my-0;
+}
+
+[data-toggle="dropdown"] {
+    @apply relative;
+    @apply after:hamburger:right-[24px] after:bg-black-menu-arrow after:absolute after:-translate-y-1/2 after:pr-[26px] after:lg:pr-[44px] after:lg:top-1/2 after:top-1/2 after:h-[18px] after:w-[18px] after:bg-[length:18px_18px] after:bg-no-repeat after:bg-center after:transition;
+    @apply hamburger:flex hamburger:justify-center;
+}
+
+.l1 {
+    @apply hamburger:w-3/4 hamburger:mx-auto;
+}
+
+.l1 [data-toggle="dropdown"] {
+    @apply after:right-0 block;
+}
+
+[data-toggle="dropdown"][aria-expanded="true"] {
+    @apply after:rotate-180;
+}
+[data-toggle="dropdown"] ~ .dropdown-menu {
+    @apply hidden;
+}
+[data-toggle="dropdown"][aria-expanded="true"] ~ .dropdown-menu {
+    @apply block;
+}
+
+.dropdown-menu:not(.l2) {
+    @apply hamburger:static lg:absolute -left-3 top-12 w-[250px] bg-white z-50 px-5 py-5;
+}
+
+.header-navigation > .menu-item:last-child > .dropdown-menu {
+    @apply lg:-left-[50%] lg:translate-x-1/4;
+}
