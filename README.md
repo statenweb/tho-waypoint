@@ -130,4 +130,4 @@ $mailer->add_user( $user1 )                     // $user1 will get individual em
 The main `App` class is responsible for registering and booting providers (e.g. `Blocks_Provider`). Each provider will then load the classes it has registered (e.g. the `Hero` block class). These classes are passed to handlers, which determine which methods to invoke by checking for the `Handler_Method` attribute on the methods of the instances.
 
 ## PHP code sniffer & coding standards
-To ensure your code meets our standards, you can run `composer run lint` to check for issues, and `composer run code-fixer` to automatically fix errors. Note that your code must pass linting before committing, as all PRs will trigger a lint check on the committed code. PRs with linting errors will not be mergeable.
+To ensure your code meets our standards, you can run `composer run lint` to check for issues, and `composer run lint-fix` to automatically fix errors. Note that your code must pass linting before committing, as all PRs will trigger a lint check on the committed code. PRs with linting errors will not be mergeable.

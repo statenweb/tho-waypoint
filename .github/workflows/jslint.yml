@@ -1,0 +1,34 @@
+name: JS check
+on:
+  pull_request:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  phpcs:
+    name: JS Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '21'
+      - name: Install dependencies
+        run: |
+          cd ./web/wp-content/themes/starter-2024
+          npm ci
+      - name: Run JS Lint
+        run: |
+          cd ./web/wp-content/themes/starter-2024
+          npm run lint
+        continue-on-error: true
+      - name: Annotate Lint Results
+        if: failure()
+        run: |
+          echo "Lint errors found, annotating the PR."
