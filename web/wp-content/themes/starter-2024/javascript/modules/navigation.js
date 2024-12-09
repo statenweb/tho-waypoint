@@ -110,16 +110,18 @@ document.addEventListener('DOMContentLoaded', function () {
 		const { action, key, type } = eventObject;
 		let listenToEventType = type;
 		if ('keydown-space-prevent-default' === type) {
-			Array.from(document.querySelectorAll('.dropdown-toggle, .dropdown-toggle-l2')).forEach(
-				(menu) => {
-					menu.addEventListener('keydown', (event) => {
-						const upperCaseKeyPressed = event.key.toUpperCase();
-						if (' ' === upperCaseKeyPressed) {
-							event.preventDefault();
-						}
-					});
-				}
-			);
+			Array.from(
+				document.querySelectorAll(
+					'.dropdown-toggle, .dropdown-toggle-l2'
+				)
+			).forEach((menu) => {
+				menu.addEventListener('keydown', (event) => {
+					const upperCaseKeyPressed = event.key.toUpperCase();
+					if (' ' === upperCaseKeyPressed) {
+						event.preventDefault();
+					}
+				});
+			});
 			return;
 		}
 
