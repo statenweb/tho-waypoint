@@ -98,7 +98,7 @@
     "lint": [
       "vendor/bin/phpcs ./web/wp-content/themes/starter-2024/ --standard=statenweb.xml  -d memory_limit=512M --ignore=*.js,./web/wp-content/themes/starter-2024/vendor/*,./web/wp-content/themes/starter-2024/node_modules/*,*.css --error-severity=1 --warning-severity=6"
     ],
-    "code-fixer": [
+    "lint-fix": [
       "vendor/bin/phpcbf ./web/wp-content/themes/starter-2024/ --standard=statenweb.xml  -d memory_limit=512M --ignore=*.js,./web/wp-content/themes/starter-2024/vendor/*,./web/wp-content/themes/starter-2024/node_modules/*,*.css --error-severity=1 --warning-severity=6"
     ]
   }
