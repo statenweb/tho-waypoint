@@ -23,6 +23,10 @@ trait Save {
 			return;
 		}
 
+		if( get_post_status( $post_id ) !== 'publish' ){
+			return;
+		}
+
 		if ( static::POST_TYPE !== $post->post_type ) {
 			return;
 		}
