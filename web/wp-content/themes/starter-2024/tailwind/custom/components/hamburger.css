@@ -1,12 +1,15 @@
-body.menu-expanded .hamburger-levels > div:nth-child(1) {
+body.menu-expanded .hamburger-levels {
+    @apply -mt-3
+}
+body.menu-expanded .hamburger-levels > *:nth-child(1) {
     @apply relative top-[10px] -rotate-45;
 }
 
 
-body.menu-expanded .hamburger-levels > div:nth-child(2) {
+body.menu-expanded .hamburger-levels > *:nth-child(2) {
     @apply relative  rotate-45;
 }
 
-body.menu-expanded .hamburger-levels > div:nth-child(3) {
+body.menu-expanded .hamburger-levels > *:nth-child(3) {
     @apply hidden;
 }

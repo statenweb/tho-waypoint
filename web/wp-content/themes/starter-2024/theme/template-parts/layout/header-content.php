@@ -15,13 +15,13 @@ $menu_id  = 'primary_menu';
 		</div>
 		<nav id="site-navigation" class="justify-end non-hamburger:mr-auto flex items-center grow-[5] non-hamburger:basis-3/4">
 			<button aria-label="Expand Menu"  data-menu-id="<?php echo $menu_id; ?>" class="group hidden hamburger:!block menu-toggler  mr-5 z-[501]" aria-controls="primary-menu" aria-expanded="false">
-				<div class="space-y-[8px] transform duration-300 hamburger-levels">
+				<span class="block space-y-[8px] transform duration-300 hamburger-levels">
 					<?php
-					$hamburger_string = '<div class="w-8 h-0.5 bg-body-text hover:opacity-70 duration-300 transition-all"></div>';
+					$hamburger_string = '<span class="block w-8 h-0.5 bg-body-text hover:opacity-70 duration-300 transition-all"></span>';
 					echo wp_kses_post( implode( "\n", array_fill( 0, 3, $hamburger_string ) ) );
 
 					?>
-				</div>
+				</span>
 			</button>
 
 
