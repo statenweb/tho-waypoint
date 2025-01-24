@@ -13,7 +13,7 @@ jobs:
       - name: Check out the repository
         uses: actions/checkout@v2
         with:
-          fetch-depth: 0 # ensure we have full Git history to detect previous tags
+          fetch-depth: 0 # ensure we have the full commit history
 
       - name: Set up Git config
         run: |
@@ -23,11 +23,11 @@ jobs:
       - name: Get current and previous tag
         id: get_tags
         run: |
-          # Grab the current tag from the ref
+          # Grab the current tag from the ref (e.g. 'refs/tags/0.0.2' -> '0.0.2')
           CURRENT_TAG="${GITHUB_REF##*/}"
 
-          # Try to find the previous tag by looking one commit behind HEAD
-          # If this fails (e.g., there's no previous tag), default to empty
+          # Attempt to find the previous tag by looking one commit behind HEAD
+          # If it fails (no previous tag), default to an empty string
           PREVIOUS_TAG="$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo '')"
 
           echo "current_tag=$CURRENT_TAG" >> $GITHUB_OUTPUT
@@ -37,12 +37,13 @@ jobs:
         id: get_commits
         run: |
           if [ -z "${{ steps.get_tags.outputs.previous_tag }}" ]; then
-            # No previous tag, so start from the beginning
+            # No previous tag, so start from the beginning of history
             COMMIT_MESSAGES=$(git log --pretty=format:"- %s" --no-merges)
           else
             COMMIT_MESSAGES=$(git log ${{ steps.get_tags.outputs.previous_tag }}..${{ steps.get_tags.outputs.current_tag }} --pretty=format:"- %s" --no-merges)
           fi
 
+          # Write the commit messages to an Actions output variable (multiline safe)
           echo "commit_messages<<EOF" >> $GITHUB_OUTPUT
           echo "$COMMIT_MESSAGES" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
@@ -58,14 +59,10 @@ jobs:
             echo "" >> CHANGELOG.md
           fi
 
-          # Format a new release heading
-          # e.g. "## [0.0.2] - 2025-01-24"
+          # Create a release heading, for example: "## [0.0.2] - 2025-01-24"
           NEW_HEADING="## [$CURRENT_TAG] - $(date +'%Y-%m-%d')"
 
-          # Prepend to top of the file
-          # 1. Write the new heading
-          # 2. Write the commit messages
-          # 3. Append the existing content
+          # Prepend the new heading and commit messages to the top of CHANGELOG.md
           (
             echo "$NEW_HEADING"
             echo ""
@@ -76,9 +73,14 @@ jobs:
 
           mv NEW_CHANGELOG.md CHANGELOG.md
 
-      - name: Commit and push changes
+      - name: Commit and push changes (using PAT)
         run: |
           git add CHANGELOG.md
-          # Use a no-op if there's nothing to commit
+          # Commit the changes (use a no-op if there's nothing new)
           git commit -m "docs: update changelog for ${{ steps.get_tags.outputs.current_tag }}" || echo "No changes to commit"
+
+          # Update the remote URL to include your personal token
+          git remote set-url origin https://x-access-token:${{ secrets.PERSONAL_TOKEN }}@github.com/statenweb/starter-2024.git
+
+          # Push to the protected main branch
           git push origin HEAD:main
