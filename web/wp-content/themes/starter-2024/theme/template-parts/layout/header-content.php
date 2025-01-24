@@ -4,13 +4,14 @@ use Victoria\Settings\Site;
 use Victoria\Utilities\Tailwind_Navwalker;
 
 $menu_id  = 'primary_menu';
+$logo     = Site::get( 'logo' );
 ?>
 
 <header id="masthead" class="header-shadow z-[2000] relative sticky top-0">
 	<div class="largest-breakpoint:container w-full mx-auto flex justify-center w-full py-5 largest-bBreakpoint:px-0 px-5 container">
 		<div class="largest-breakpoint:basis-1/4">
-			<a aria-label="<?php esc_attr( bloginfo( 'name' ) ); ?>" href="<?php echo home_url( '/' ); ?>">
-				<?php echo wp_get_attachment_image( get_theme_mod( 'custom_logo' ), 'full', false, [ 'class' => 'logo' ] ); ?>
+			<a aria-label="<?php esc_attr( bloginfo( 'name' ) ); ?>" href="<?php echo home_url( '/' ); ?>" class="text-body-text">
+				<?php echo $logo ? wp_get_attachment_image( $logo, 'full', false, [ 'class' => 'logo', 'alt' => get_bloginfo( 'name' ) ] ) : get_bloginfo( 'name' ); ?>
 			</a>
 		</div>
 		<nav id="site-navigation" class="justify-end non-hamburger:mr-auto flex items-center grow-[5] non-hamburger:basis-3/4">
