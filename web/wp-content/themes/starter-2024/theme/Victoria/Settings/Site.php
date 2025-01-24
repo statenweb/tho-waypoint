@@ -87,6 +87,12 @@ class Site extends Setting {
 	}
 
 	/**
-	 * @todo add in a utility getter for these settings
+	 * Get a setting from the site (global) settings.
+	 *
+	 * @param string $key
+	 * @return mixed
 	 */
+	public static function get( string $key ) {
+		return get_field( $key, 'option' );
+	}
 }
