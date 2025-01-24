@@ -3,6 +3,7 @@
 namespace Victoria\Hooks;
 
 use Victoria\Abstracts\Hook;
+use Victoria\Settings\Site;
 
 class Actions extends Hook {
 	public function attach_hooks(): void {
