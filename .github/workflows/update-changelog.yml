@@ -1,0 +1,84 @@
+name: Update Changelog on Tag
+
+on:
+  push:
+    tags:
+      - "*" # triggers on every tag push
+
+jobs:
+  update-changelog:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # ensure we have full Git history to detect previous tags
+
+      - name: Set up Git config
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Get current and previous tag
+        id: get_tags
+        run: |
+          # Grab the current tag from the ref
+          CURRENT_TAG="${GITHUB_REF##*/}"
+
+          # Try to find the previous tag by looking one commit behind HEAD
+          # If this fails (e.g., there's no previous tag), default to empty
+          PREVIOUS_TAG="$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo '')"
+
+          echo "current_tag=$CURRENT_TAG" >> $GITHUB_OUTPUT
+          echo "previous_tag=$PREVIOUS_TAG" >> $GITHUB_OUTPUT
+
+      - name: Get commit messages
+        id: get_commits
+        run: |
+          if [ -z "${{ steps.get_tags.outputs.previous_tag }}" ]; then
+            # No previous tag, so start from the beginning
+            COMMIT_MESSAGES=$(git log --pretty=format:"- %s" --no-merges)
+          else
+            COMMIT_MESSAGES=$(git log ${{ steps.get_tags.outputs.previous_tag }}..${{ steps.get_tags.outputs.current_tag }} --pretty=format:"- %s" --no-merges)
+          fi
+
+          echo "commit_messages<<EOF" >> $GITHUB_OUTPUT
+          echo "$COMMIT_MESSAGES" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Update CHANGELOG.md
+        run: |
+          CURRENT_TAG="${{ steps.get_tags.outputs.current_tag }}"
+          COMMIT_MESSAGES="${{ steps.get_commits.outputs.commit_messages }}"
+
+          # If there's no CHANGELOG.md, create it
+          if [ ! -f CHANGELOG.md ]; then
+            echo "# Changelog" > CHANGELOG.md
+            echo "" >> CHANGELOG.md
+          fi
+
+          # Format a new release heading
+          # e.g. "## [0.0.2] - 2025-01-24"
+          NEW_HEADING="## [$CURRENT_TAG] - $(date +'%Y-%m-%d')"
+
+          # Prepend to top of the file
+          # 1. Write the new heading
+          # 2. Write the commit messages
+          # 3. Append the existing content
+          (
+            echo "$NEW_HEADING"
+            echo ""
+            echo "$COMMIT_MESSAGES"
+            echo ""
+            cat CHANGELOG.md
+          ) > NEW_CHANGELOG.md
+
+          mv NEW_CHANGELOG.md CHANGELOG.md
+
+      - name: Commit and push changes
+        run: |
+          git add CHANGELOG.md
+          # Use a no-op if there's nothing to commit
+          git commit -m "docs: update changelog for ${{ steps.get_tags.outputs.current_tag }}" || echo "No changes to commit"
+          git push origin HEAD:main
