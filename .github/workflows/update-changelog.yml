@@ -23,11 +23,10 @@ jobs:
       - name: Get current and previous tag
         id: get_tags
         run: |
-          # Grab the current tag from the ref (e.g. 'refs/tags/0.0.2' -> '0.0.2')
+          # CURRENT_TAG is the ref name, e.g. 'refs/tags/0.0.2' -> '0.0.2'
           CURRENT_TAG="${GITHUB_REF##*/}"
 
-          # Attempt to find the previous tag by looking one commit behind HEAD
-          # If it fails (no previous tag), default to an empty string
+          # Attempt to find the previous tag
           PREVIOUS_TAG="$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo '')"
 
           echo "current_tag=$CURRENT_TAG" >> $GITHUB_OUTPUT
@@ -37,13 +36,13 @@ jobs:
         id: get_commits
         run: |
           if [ -z "${{ steps.get_tags.outputs.previous_tag }}" ]; then
-            # No previous tag, so start from the beginning of history
+            # No previous tag - go from the beginning
             COMMIT_MESSAGES=$(git log --pretty=format:"- %s" --no-merges)
           else
             COMMIT_MESSAGES=$(git log ${{ steps.get_tags.outputs.previous_tag }}..${{ steps.get_tags.outputs.current_tag }} --pretty=format:"- %s" --no-merges)
           fi
 
-          # Write the commit messages to an Actions output variable (multiline safe)
+          # Store commit messages as a multi-line output
           echo "commit_messages<<EOF" >> $GITHUB_OUTPUT
           echo "$COMMIT_MESSAGES" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
@@ -53,16 +52,13 @@ jobs:
           CURRENT_TAG="${{ steps.get_tags.outputs.current_tag }}"
           COMMIT_MESSAGES="${{ steps.get_commits.outputs.commit_messages }}"
 
-          # If there's no CHANGELOG.md, create it
           if [ ! -f CHANGELOG.md ]; then
             echo "# Changelog" > CHANGELOG.md
             echo "" >> CHANGELOG.md
           fi
 
-          # Create a release heading, for example: "## [0.0.2] - 2025-01-24"
           NEW_HEADING="## [$CURRENT_TAG] - $(date +'%Y-%m-%d')"
 
-          # Prepend the new heading and commit messages to the top of CHANGELOG.md
           (
             echo "$NEW_HEADING"
             echo ""
@@ -73,14 +69,27 @@ jobs:
 
           mv NEW_CHANGELOG.md CHANGELOG.md
 
-      - name: Commit and push changes (using PAT)
+      # Instead of pushing to main, create a branch and commit changes there
+      - name: Commit changes to a new branch
         run: |
+          git checkout -b changelog-update-${{ steps.get_tags.outputs.current_tag }}
           git add CHANGELOG.md
-          # Commit the changes (use a no-op if there's nothing new)
-          git commit -m "docs: update changelog for ${{ steps.get_tags.outputs.current_tag }}" || echo "No changes to commit"
+          git commit -m "docs: update changelog for ${{ steps.get_tags.outputs.current_tag }}"
 
-          # Update the remote URL to include your personal token
-          git remote set-url origin https://x-access-token:${{ secrets.PERSONAL_TOKEN }}@github.com/statenweb/starter-2024.git
+      # Create or update a PR using peter-evans/create-pull-request
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: changelog-update-${{ steps.get_tags.outputs.current_tag }}
+          base: main
+          title: "docs: Update CHANGELOG for version ${{ steps.get_tags.outputs.current_tag }}"
+          body: |
+            This Pull Request updates the CHANGELOG with commit messages between:
+            - **Previous Tag**: ${{ steps.get_tags.outputs.previous_tag }}
+            - **Current Tag**: ${{ steps.get_tags.outputs.current_tag }}
 
-          # Push to the protected main branch
-          git push origin HEAD:main
+            See commit messages:
+            ${{ steps.get_commits.outputs.commit_messages }}
+          # optional: if you want the PR to merge automatically if checks pass
+          # automatically merge can be done with 'peter-evans/enable-pull-request-automerge' or GitHub auto-merge
