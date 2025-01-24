@@ -10,9 +10,11 @@ class SW_Staging_Check {
 
     public static function check_environment() {
 
-        if ( 'production' === getenv( 'WP_ENV' ) ) {
+        $env = !empty($_ENV['WP_ENV']) ? $_ENV['WP_ENV'] : null;
+
+        if ( 'production' === $env ) {
             return true;
-        }
+		}
 
         self::disable_wordfence();
         self::handle_meta_robots();
