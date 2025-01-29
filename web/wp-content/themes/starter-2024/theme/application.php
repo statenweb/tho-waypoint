@@ -11,7 +11,7 @@ use Victoria\Providers\Shortcodes_Provider;
 use Victoria\Providers\Sidebars_Provider;
 use Victoria\Providers\Utilities_Provider;
 
-if ( class_exists( 'App' ) ) {
+if ( class_exists( App::class ) ) {
 	( new App() )
 		->add_providers(
 			[
