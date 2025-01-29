@@ -11,7 +11,10 @@ use Victoria\Providers\Shortcodes_Provider;
 use Victoria\Providers\Sidebars_Provider;
 use Victoria\Providers\Utilities_Provider;
 
-if ( class_exists( App::class ) ) {
+if (
+	class_exists( App::class )
+	&& class_exists( 'ACF' )
+) {
 	( new App() )
 		->add_providers(
 			[
