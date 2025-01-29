@@ -23,6 +23,12 @@ The next step is to go to the theme directory and run:
 
 This will run webpack's watch functionality and will compile your JS/SCSS and run the webpack build process whenever any assets it is watching are changed.
 
+Final step is to go to the root directory and run:
+`wp victoria publish`
+
+This command copies the files of [statenweb / victoria-package](https://github.com/statenweb/victoria-package) from `vendor/statenweb/victoria/files` to `web/wp-content/themes/<theme_name>/Victoria` directory, ensuring the package is placed in the correct location within the theme structure.
+For more details, please refer to the Git repository.
+
 That's all, you're set to get started.
 
 ## Autoloading
@@ -131,3 +137,13 @@ The main `App` class is responsible for registering and booting providers (e.g. 
 
 ## PHP code sniffer & coding standards
 To ensure your code meets our standards, you can run `composer run lint` to check for issues, and `composer run lint-fix` to automatically fix errors. Note that your code must pass linting before committing, as all PRs will trigger a lint check on the committed code. PRs with linting errors will not be mergeable.
+
+## Packages
+1. [statenweb / victoria-package](https://github.com/statenweb/victoria-package)
+   - Contains the main source files for the starter theme.
+
+2. [statenweb / wp-block-generator](https://github.com/statenweb/wp-block-generator)
+    - A WP-CLI script for generating WordPress blocks.
+
+3. [statenweb / block-generator](https://github.com/statenweb/block-generator)
+    - A Node.js script for generating WordPress blocks.
