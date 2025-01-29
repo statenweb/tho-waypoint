@@ -34,8 +34,9 @@ class Actions extends Hook {
 		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-		})(window,document,'script','dataLayer','<?php echo esc_js($gtm_container); ?>');</script>
-		<!-- End Google Tag Manager --><?php
+		})(window,document,'script','dataLayer','<?php echo esc_js( $gtm_container ); ?>');</script>
+		<!-- End Google Tag Manager -->
+		<?php
 	}
 
 	public function gtm_container_body_open() {
@@ -44,10 +45,12 @@ class Actions extends Hook {
 			return;
 		}
 		if ( $gtm_container ) {
-			?><!-- Google Tag Manager (noscript) -->
-			<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<?php echo esc_js($gtm_container); ?>"
+			?>
+			<!-- Google Tag Manager (noscript) -->
+			<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<?php echo esc_js( $gtm_container ); ?>"
 			height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-			<!-- End Google Tag Manager (noscript) --><?php
+			<!-- End Google Tag Manager (noscript) -->
+			<?php
 		}
 	}
 }

@@ -23,7 +23,7 @@ trait Save {
 			return;
 		}
 
-		if( get_post_status( $post_id ) !== 'publish' ){
+		if ( get_post_status( $post_id ) !== 'publish' ) {
 			return;
 		}
 

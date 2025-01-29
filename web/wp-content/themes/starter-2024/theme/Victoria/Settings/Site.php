@@ -69,10 +69,13 @@ class Site extends Setting {
 					'instructions' => 'If blank, it will use the main logo',
 				]
 			)
-			->addText('gtm_container', [
-				'label' => 'GTM ID (e.g. GTM-XXXXX")',
-				'instructions' => 'Enter your GTM Container ID, include the GTM-, e.g. GTM-XXXXXX',
-			])
+			->addText(
+				'gtm_container',
+				[
+					'label' => 'GTM ID (e.g. GTM-XXXXX")',
+					'instructions' => 'Enter your GTM Container ID, include the GTM-, e.g. GTM-XXXXXX',
+				]
+			)
 			->addTab( 'navigation', [ 'placement' => 'top' ] )
 			->addSelect(
 				'navigation-style',
