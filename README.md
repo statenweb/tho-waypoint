@@ -37,7 +37,7 @@ We use PSR-4 autoloading for class files.
 ### Classes
 When creating new classes, follow the existing structure:
 - Class file path: `Victoria\Class_Name.php`
-- Class name: `Victoria\Class_Name.php`
+- Class name: `Class_Name`
 
 ### Method & Function Naming
 Methods and functions should follow the snake_case convention (e.g. `class_method_or_function()`).
