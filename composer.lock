@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fbe7e084ce812cc23bec503c35581403",
+    "content-hash": "6cee14c19a431a029e8ea36e45ea2ff7",
     "packages": [
         {
             "name": "composer/installers",
@@ -1212,6 +1212,72 @@
             "time": "2025-01-14T01:00:15+00:00"
         },
         {
+            "name": "statenweb/sw-exporter",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:statenweb/sw-exporter.git",
+                "reference": "ed2ba697ed7c560944603e9beac0cf503641c844"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://satis.statenweb.com/dist/statenweb/sw-exporter/statenweb-sw-exporter-ed2ba697ed7c560944603e9beac0cf503641c844-zip-67c54c.zip",
+                "reference": "ed2ba697ed7c560944603e9beac0cf503641c844",
+                "shasum": "89c518d3c8369dd987b8c3b4baf9cbe3df09c60d"
+            },
+            "require": {
+                "wp-cli/wp-cli": "^2.8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "StatenWeb\\": "src/"
+                },
+                "files": [
+                    "wp-cli-bootstrap.php"
+                ]
+            },
+            "description": "A reusable package for exporting classes, traits and interfaces from the StatenWeb / Victoria package.",
+            "support": {
+                "source": "https://github.com/statenweb/sw-exporter/tree/1.0.0",
+                "issues": "https://github.com/statenweb/sw-exporter/issues"
+            },
+            "time": "2025-02-18T20:18:42+00:00"
+        },
+        {
+            "name": "statenweb/sw-generator",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:statenweb/sw-generator.git",
+                "reference": "594f755ed04d113bea0825bc15cd66bc565c2502"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://satis.statenweb.com/dist/statenweb/sw-generator/statenweb-sw-generator-594f755ed04d113bea0825bc15cd66bc565c2502-zip-d99402.zip",
+                "reference": "594f755ed04d113bea0825bc15cd66bc565c2502",
+                "shasum": "ede0017f97bf6e6a5712f41f05db4917e2d155ac"
+            },
+            "require": {
+                "wp-cli/wp-cli": "^2.8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "StatenWeb\\": "src/"
+                },
+                "files": [
+                    "wp-cli-bootstrap.php"
+                ]
+            },
+            "description": "Custom WP-CLI command for generating assets for StatenWeb starter theme",
+            "support": {
+                "source": "https://github.com/statenweb/sw-generator/tree/1.0.0",
+                "issues": "https://github.com/statenweb/sw-generator/issues"
+            },
+            "time": "2025-02-04T18:44:11+00:00"
+        },
+        {
             "name": "statenweb/victoria",
             "version": "1.0.0",
             "source": {
@@ -1243,39 +1309,6 @@
                 "issues": "https://github.com/statenweb/victoria-package/issues"
             },
             "time": "2025-02-17T21:04:05+00:00"
-        },
-        {
-            "name": "statenweb/wp-block-generator",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "git@github.com:statenweb/wp-block-generator.git",
-                "reference": "e4bbb882e024bd85d26ebc107cf13a0e739c02ce"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://satis.statenweb.com/dist/statenweb/wp-block-generator/statenweb-wp-block-generator-e4bbb882e024bd85d26ebc107cf13a0e739c02ce-zip-cc0323.zip",
-                "reference": "e4bbb882e024bd85d26ebc107cf13a0e739c02ce",
-                "shasum": "c644370422d381545390d361b6ee329903f4df2a"
-            },
-            "require": {
-                "wp-cli/wp-cli": "^2.8"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "StatenWeb\\BlockGenerator\\": "src/"
-                },
-                "files": [
-                    "wp-cli-bootstrap.php"
-                ]
-            },
-            "description": "Custom WP-CLI command for generating WordPress blocks",
-            "support": {
-                "source": "https://github.com/statenweb/wp-block-generator/tree/1.0.0",
-                "issues": "https://github.com/statenweb/wp-block-generator/issues"
-            },
-            "time": "2025-01-24T22:53:38+00:00"
         },
         {
             "name": "symfony/finder",
@@ -2138,15 +2171,15 @@
         },
         {
             "name": "wpackagist-plugin/wordfence",
-            "version": "7.11.7",
+            "version": "8.0.3",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordfence/",
-                "reference": "tags/7.11.7"
+                "reference": "tags/8.0.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordfence.7.11.7.zip"
+                "url": "https://downloads.wordpress.org/plugin/wordfence.8.0.3.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
