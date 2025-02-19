@@ -145,8 +145,11 @@ To ensure your code meets our standards, you can run `composer run lint` to chec
 2. [statenweb / sw-generator](https://github.com/statenweb/sw-generator)
     - A WP-CLI script for generating StatenWeb starter theme assets (from Victoria package).
 
-3. [statenweb / wp-block-generator](https://github.com/statenweb/wp-block-generator)
+3. [statenweb / sw-exporter](https://github.com/statenweb/sw-exporter)
+    - A WP-CLI script to export classes, traits, and interfaces from the Victoria package, including their dependencies, into a zip file.
+
+4. [statenweb / wp-block-generator](https://github.com/statenweb/wp-block-generator)
     - A WP-CLI script for generating WordPress blocks.
 
-4. [statenweb / block-generator](https://github.com/statenweb/block-generator)
+5. [statenweb / block-generator](https://github.com/statenweb/block-generator)
     - A Node.js script for generating WordPress blocks.
