@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "08a1b6ea06a042f23127885ef323aad3",
+    "content-hash": "924ebd5bccbeaa6af3c5ab20422a8505",
     "packages": [
         {
             "name": "composer/installers",
@@ -806,30 +806,6 @@
                 "source": "https://github.com/statenweb/wordpress-plugin-seo-by-rank-math-pro/tree/3.0.94000000"
             },
             "time": "2025-08-14T02:00:16+00:00"
-        },
-        {
-            "name": "statenweb-plugin/wp-retina-2x-pro",
-            "version": "6.1.8000000",
-            "source": {
-                "type": "git",
-                "url": "git@github.com:statenweb/wordpress-plugin-wp-retina-2x-pro.git",
-                "reference": "1fb0fcc59883de197686a2a684b0e9a30ca0e1ab"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://satis.statenweb.com/dist/statenweb-plugin/wp-retina-2x-pro/statenweb-plugin-wp-retina-2x-pro-1fb0fcc59883de197686a2a684b0e9a30ca0e1ab-zip-38ddf1.zip",
-                "reference": "1fb0fcc59883de197686a2a684b0e9a30ca0e1ab",
-                "shasum": "bbf63b8b025049d07836696bf06286f117d5247c"
-            },
-            "type": "wordpress-plugin",
-            "license": [
-                "GPLv3"
-            ],
-            "description": "WordPress plugin `wp-retina-2x-pro`",
-            "support": {
-                "source": "https://github.com/statenweb/wordpress-plugin-wp-retina-2x-pro/tree/6.1.8000000"
-            },
-            "time": "2025-05-22T23:37:42+00:00"
         },
         {
             "name": "statenweb-plugin/wp-rocket",
