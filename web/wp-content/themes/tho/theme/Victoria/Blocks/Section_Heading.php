@@ -51,8 +51,20 @@ class Section_Heading extends Block {
 					'default_value' => 'h2',
 				]
 			)
-			->addText( 'heading', [ 'label' => 'Heading', 'required' => 1 ] )
-			->addWysiwyg( 'body_text', [ 'label' => 'Body Text', 'tabs' => 'basic' ] )
+			->addText(
+				'heading',
+				[
+					'label' => 'Heading',
+					'required' => 1,
+				]
+			)
+			->addWysiwyg(
+				'body_text',
+				[
+					'label' => 'Body Text',
+					'tabs' => 'basic',
+				]
+			)
 			->addSelect(
 				'alignment',
 				[
