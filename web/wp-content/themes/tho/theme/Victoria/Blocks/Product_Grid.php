@@ -40,12 +40,15 @@ class Product_Grid extends Block {
 
 		$section
 			->addText( 'heading', [ 'label' => 'Section Heading' ] )
-			->addNumber( 'products_per_page', [
-				'label'         => 'Products to Show',
-				'default_value' => 8,
-				'min'           => 1,
-				'max'           => 48,
-			] )
+			->addNumber(
+				'products_per_page',
+				[
+					'label'         => 'Products to Show',
+					'default_value' => 8,
+					'min'           => 1,
+					'max'           => 48,
+				]
+			)
 			->addSelect(
 				'columns',
 				[

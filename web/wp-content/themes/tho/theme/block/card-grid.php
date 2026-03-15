@@ -16,7 +16,8 @@ $cards         = get_field( 'cards' );
 		<?php endif; ?>
 		<?php if ( $cards ) : ?>
 		<div class="grid grid-cols-1 md:grid-cols-<?php echo esc_attr( $columns ); ?> gap-8">
-			<?php foreach ( $cards as $card ) :
+			<?php
+			foreach ( $cards as $card ) :
 				$image_url = $card['image'] ? wp_get_attachment_image_url( $card['image'], 'medium' ) : '';
 				?>
 			<div class="flex flex-col">
@@ -31,7 +32,8 @@ $cards         = get_field( 'cards' );
 				<?php if ( $card['description'] ) : ?>
 				<div class="text-base leading-relaxed"><?php echo wp_kses_post( $card['description'] ); ?></div>
 				<?php endif; ?>
-				<?php if ( $card['link'] ) :
+				<?php
+				if ( $card['link'] ) :
 					$link = $card['link'];
 					?>
 				<a href="<?php echo esc_url( $link['url'] ); ?>" class="mt-auto pt-4 font-bold underline hover:no-underline" target="<?php echo esc_attr( $link['target'] ?: '_self' ); ?>">

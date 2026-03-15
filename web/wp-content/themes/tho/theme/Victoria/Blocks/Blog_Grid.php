@@ -40,12 +40,15 @@ class Blog_Grid extends Block {
 
 		$section
 			->addText( 'heading', [ 'label' => 'Section Heading' ] )
-			->addNumber( 'posts_per_page', [
-				'label'         => 'Posts to Show',
-				'default_value' => 6,
-				'min'           => 1,
-				'max'           => 24,
-			] )
+			->addNumber(
+				'posts_per_page',
+				[
+					'label'         => 'Posts to Show',
+					'default_value' => 6,
+					'min'           => 1,
+					'max'           => 24,
+				]
+			)
 			->addSelect(
 				'columns',
 				[
