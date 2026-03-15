@@ -9,39 +9,109 @@
       "link": true,
       "palette": [
         {
-          "slug": "medium-blue",
-          "color": "#0173B7",
-          "name": "Medium Blue"
+          "slug": "black",
+          "color": "#000000",
+          "name": "Black"
         },
         {
-          "slug": "body-background",
-          "color": "#f9f9f9",
-          "name": "Body Background"
+          "slug": "white",
+          "color": "#FFFFFF",
+          "name": "White"
         },
         {
-          "slug": "body-text",
-          "color": "#030D1F",
-          "name": "Body Text"
+          "slug": "dark-green",
+          "color": "#007129",
+          "name": "Dark Green"
+        },
+        {
+          "slug": "medium-green",
+          "color": "#00FF01",
+          "name": "Medium Green"
+        },
+        {
+          "slug": "light-green",
+          "color": "#AAFFAA",
+          "name": "Light Green"
+        },
+        {
+          "slug": "near-black",
+          "color": "#333333",
+          "name": "Near Black"
+        },
+        {
+          "slug": "dark-gray",
+          "color": "#605E5E",
+          "name": "Dark Gray"
+        },
+        {
+          "slug": "medium-gray",
+          "color": "#727272",
+          "name": "Medium Gray"
+        },
+        {
+          "slug": "gray",
+          "color": "#999999",
+          "name": "Gray"
+        },
+        {
+          "slug": "warm-gray",
+          "color": "#A0A09F",
+          "name": "Warm Gray"
+        },
+        {
+          "slug": "light-gray",
+          "color": "#B0B0B0",
+          "name": "Light Gray"
+        },
+        {
+          "slug": "lighter-gray",
+          "color": "#CCCCCC",
+          "name": "Lighter Gray"
+        },
+        {
+          "slug": "teal",
+          "color": "#00CEA8",
+          "name": "Teal"
+        },
+        {
+          "slug": "cyan",
+          "color": "#9FEFE0",
+          "name": "Cyan"
+        },
+        {
+          "slug": "deep-teal",
+          "color": "#008970",
+          "name": "Deep Teal"
+        },
+        {
+          "slug": "dark-teal",
+          "color": "#004538",
+          "name": "Dark Teal"
         },
         {
           "slug": "primary",
-          "color": "#030D1F",
+          "color": "#000000",
           "name": "Primary"
         },
         {
           "slug": "secondary",
-          "color": "#D33414",
+          "color": "#007129",
           "name": "Secondary"
         },
         {
           "slug": "accent",
-          "color": "#ef4137",
+          "color": "#00FF01",
           "name": "Accent"
         },
         {
-          "slug": "white",
-            "color": "#ffffff",
-            "name": "White"
+          "slug": "body-background",
+          "color": "#FFFFFF",
+          "name": "Body Background"
+        },
+        {
+          "slug": "body-text",
+          "color": "#000000",
+          "name": "Body Text"
         }
       ],
       "gradients": []
@@ -61,15 +131,27 @@
       "customFontSize": true,
       "fontFamilies": [
         {
-          "name": "Inter",
-          "slug": "inter"
+          "name": "Aeonik",
+          "slug": "aeonik",
+          "fontFamily": "Aeonik, Inter, system-ui, sans-serif"
         },
         {
-          "name": "Roboto",
-          "slug": "roboto"
+          "name": "Aero",
+          "slug": "aero",
+          "fontFamily": "Aero, Monument Extended, Impact, sans-serif"
+        },
+        {
+          "name": "DIN Next",
+          "slug": "din-next",
+          "fontFamily": "DIN Next W01 Light, system-ui, sans-serif"
         }
       ],
       "fontSizes": [
+        {
+          "name": "Caption",
+          "slug": "caption",
+          "size": "12px"
+        },
         {
           "name": "Extra Small",
           "slug": "extra-small",
@@ -78,43 +160,43 @@
         {
           "name": "Small",
           "slug": "small",
-          "size": "16px"
+          "size": "15px"
         },
         {
-          "name": "Paragraph 1",
-          "slug": "paragraph-1",
-          "size": "18px"
+          "name": "Body",
+          "slug": "body",
+          "size": "17px"
         },
         {
-          "name": "Paragraph 1",
-          "slug": "paragraph-1",
-          "size": "18px"
+          "name": "Heading S",
+          "slug": "heading-s",
+          "size": "20px"
         },
         {
-          "name": "Subheading 1",
-          "slug": "subheading-1",
-          "size": "22px"
+          "name": "Heading M",
+          "slug": "heading-m",
+          "size": "23px"
         },
         {
-          "name": "Heading 3",
-          "slug": "heading-3",
-          "size": "26px"
+          "name": "Heading L",
+          "slug": "heading-l",
+          "size": "35px"
         },
         {
-          "name": "Heading 2",
-          "slug": "heading-2",
-          "size": "36px"
+          "name": "Heading XL",
+          "slug": "heading-xl",
+          "size": "42px"
         },
         {
-          "name": "Heading 1",
-          "slug": "heading-1",
-          "size": "56px"
+          "name": "Display",
+          "slug": "display",
+          "size": "110px"
         }
       ]
     },
     "layout": {
-      "contentSize": "60rem",
-      "wideSize": "80rem"
+      "contentSize": "980px",
+      "wideSize": "980px"
     }
   }
 }
