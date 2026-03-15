@@ -68,8 +68,20 @@ class Card_Grid extends Block {
 						'return_format' => 'id',
 					]
 				)
-				->addText( 'title', [ 'label' => 'Title', 'required' => 1 ] )
-				->addWysiwyg( 'description', [ 'label' => 'Description', 'tabs' => 'basic' ] )
+				->addText(
+					'title',
+					[
+						'label' => 'Title',
+						'required' => 1,
+					]
+				)
+				->addWysiwyg(
+					'description',
+					[
+						'label' => 'Description',
+						'tabs' => 'basic',
+					]
+				)
 				->addLink( 'link', [ 'label' => 'Link' ] )
 			->endRepeater()
 			->setLocation( 'block', '==', 'acf/' . $this->get_acf_unique_name() );

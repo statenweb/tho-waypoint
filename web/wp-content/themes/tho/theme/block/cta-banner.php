@@ -18,7 +18,8 @@ $button_style  = get_field( 'button_style' ) ?: 'primary';
 		<?php if ( $body_text ) : ?>
 		<div class="text-lg mb-8 max-w-2xl mx-auto"><?php echo wp_kses_post( $body_text ); ?></div>
 		<?php endif; ?>
-		<?php if ( $button_link ) :
+		<?php
+		if ( $button_link ) :
 			$btn_class = match ( $button_style ) {
 				'primary'   => 'bg-[#007129] text-white hover:bg-[#005a21]',
 				'secondary' => 'bg-black text-white hover:bg-gray-800',
