@@ -27,8 +27,8 @@ $img_col   = match ( $ratio ) {
 	<div class="max-w-6xl mx-auto px-6">
 		<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
 			<?php
-			$text_order = $image_pos === 'left' ? 'lg:order-2' : 'lg:order-1';
-			$img_order  = $image_pos === 'left' ? 'lg:order-1' : 'lg:order-2';
+			$text_order = 'left' === $image_pos ? 'lg:order-2' : 'lg:order-1';
+			$img_order  = 'left' === $image_pos ? 'lg:order-1' : 'lg:order-2';
 			?>
 			<div class="<?php echo esc_attr( $text_col . ' ' . $text_order ); ?>">
 				<?php if ( $heading ) : ?>
@@ -45,7 +45,7 @@ $img_col   = match ( $ratio ) {
 			</div>
 			<div class="<?php echo esc_attr( $img_col . ' ' . $img_order ); ?>">
 				<?php if ( $image_id ) : ?>
-				<?php echo wp_get_attachment_image( $image_id, 'large', false, [ 'class' => 'w-full h-auto object-cover' ] ); ?>
+					<?php echo wp_get_attachment_image( $image_id, 'large', false, [ 'class' => 'w-full h-auto object-cover' ] ); ?>
 				<?php endif; ?>
 			</div>
 		</div>
