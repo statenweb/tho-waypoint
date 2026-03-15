@@ -25,6 +25,18 @@ module.exports = {
 		},
 		extend: {
 			colors: {
+				// THO Grayscale (matches UX audit)
+				gray: {
+					100: '#f7f7f7',
+					200: '#eeeeee',
+					300: '#cccccc',
+					400: '#b0b0b0',
+					500: '#999999',
+					600: '#727272',
+					700: '#605e5e',
+					800: '#333333',
+					900: '#1a1a1a',
+				},
 				// THO Brand Colors
 				'tho-black': '#000000',
 				'tho-white': '#FFFFFF',
