@@ -48,8 +48,20 @@ class Impact_Stats extends Block {
 					'min'           => 1,
 				]
 			)
-				->addText( 'number', [ 'label' => 'Number / Value', 'required' => 1 ] )
-				->addText( 'label', [ 'label' => 'Label', 'required' => 1 ] )
+				->addText(
+					'number',
+					[
+						'label' => 'Number / Value',
+						'required' => 1,
+					]
+				)
+				->addText(
+					'label',
+					[
+						'label' => 'Label',
+						'required' => 1,
+					]
+				)
 			->endRepeater()
 			->addSelect(
 				'columns',

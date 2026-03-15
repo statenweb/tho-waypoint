@@ -39,9 +39,27 @@ class Cta_Banner extends Block {
 		$section = new FieldsBuilder( $this->get_acf_field_unique_name( 'cta_banner' ) );
 
 		$section
-			->addText( 'heading', [ 'label' => 'Heading', 'required' => 1 ] )
-			->addWysiwyg( 'body_text', [ 'label' => 'Body Text', 'tabs' => 'basic' ] )
-			->addLink( 'button_link', [ 'label' => 'Button Link', 'required' => 1 ] )
+			->addText(
+				'heading',
+				[
+					'label' => 'Heading',
+					'required' => 1,
+				]
+			)
+			->addWysiwyg(
+				'body_text',
+				[
+					'label' => 'Body Text',
+					'tabs' => 'basic',
+				]
+			)
+			->addLink(
+				'button_link',
+				[
+					'label' => 'Button Link',
+					'required' => 1,
+				]
+			)
 			->addSelect(
 				'button_style',
 				[
