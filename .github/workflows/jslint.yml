@@ -22,11 +22,11 @@ jobs:
           node-version: '21'
       - name: Install dependencies
         run: |
-          cd ./web/wp-content/themes/starter-2024
+          cd ./web/wp-content/themes/tho
           npm ci
       - name: Run JS Lint
         run: |
-          cd ./web/wp-content/themes/starter-2024
+          cd ./web/wp-content/themes/tho
           npm run lint
       - name: Annotate Lint Results
         if: failure()
