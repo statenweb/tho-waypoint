@@ -62,7 +62,13 @@ class Social_Links extends Block {
 						'required' => 1,
 					]
 				)
-				->addUrl( 'url', [ 'label' => 'URL', 'required' => 1 ] )
+				->addUrl(
+					'url',
+					[
+						'label' => 'URL',
+						'required' => 1,
+					]
+				)
 			->endRepeater()
 			->setLocation( 'block', '==', 'acf/' . $this->get_acf_unique_name() );
 

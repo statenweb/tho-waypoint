@@ -8,10 +8,12 @@ $heading       = get_field( 'heading' );
 $posts_count   = get_field( 'posts_per_page' ) ?: 6;
 $columns       = get_field( 'columns' ) ?: '3';
 
-$recent_posts = get_posts( [
-	'posts_per_page' => $posts_count,
-	'post_status'    => 'publish',
-] );
+$recent_posts = get_posts(
+	[
+		'posts_per_page' => $posts_count,
+		'post_status'    => 'publish',
+	]
+);
 ?>
 
 <section id="<?php echo esc_attr( $id ); ?>" class="<?php echo esc_attr( $block_classes ); ?>">

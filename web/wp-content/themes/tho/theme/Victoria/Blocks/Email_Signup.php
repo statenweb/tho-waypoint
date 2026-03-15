@@ -40,18 +40,27 @@ class Email_Signup extends Block {
 
 		$section
 			->addText( 'heading', [ 'label' => 'Heading' ] )
-			->addText( 'placeholder', [
-				'label'         => 'Placeholder Text',
-				'default_value' => 'Enter your email',
-			] )
-			->addText( 'button_text', [
-				'label'         => 'Button Text',
-				'default_value' => 'Sign Up',
-			] )
-			->addText( 'form_action', [
-				'label'       => 'Form Action URL',
-				'instructions' => 'External form endpoint (Mailchimp, etc.) or leave blank for default.',
-			] )
+			->addText(
+				'placeholder',
+				[
+					'label'         => 'Placeholder Text',
+					'default_value' => 'Enter your email',
+				]
+			)
+			->addText(
+				'button_text',
+				[
+					'label'         => 'Button Text',
+					'default_value' => 'Sign Up',
+				]
+			)
+			->addText(
+				'form_action',
+				[
+					'label'       => 'Form Action URL',
+					'instructions' => 'External form endpoint (Mailchimp, etc.) or leave blank for default.',
+				]
+			)
 			->setLocation( 'block', '==', 'acf/' . $this->get_acf_unique_name() );
 
 		return $section;

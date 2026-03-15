@@ -12,7 +12,8 @@ $autoplay      = get_field( 'autoplay' ) ?? 'yes';
 	<?php if ( $slides ) : ?>
 	<div class="relative overflow-hidden">
 		<div class="flex transition-transform duration-500">
-			<?php foreach ( $slides as $index => $slide ) :
+			<?php
+			foreach ( $slides as $index => $slide ) :
 				$image_url = $slide['image'] ? wp_get_attachment_image_url( $slide['image'], 'full' ) : '';
 				?>
 			<div class="min-w-full relative" data-slide="<?php echo esc_attr( $index ); ?>">
@@ -27,7 +28,8 @@ $autoplay      = get_field( 'autoplay' ) ?? 'yes';
 					<?php if ( $slide['body_text'] ) : ?>
 					<div class="max-w-2xl text-lg mb-6"><?php echo wp_kses_post( $slide['body_text'] ); ?></div>
 					<?php endif; ?>
-					<?php if ( $slide['cta_link'] ) :
+					<?php
+					if ( $slide['cta_link'] ) :
 						$cta = $slide['cta_link'];
 						?>
 					<a href="<?php echo esc_url( $cta['url'] ); ?>" class="inline-block bg-[#007129] text-white font-bold py-3 px-8 hover:bg-[#005a21] transition-colors duration-300" target="<?php echo esc_attr( $cta['target'] ?: '_self' ); ?>">

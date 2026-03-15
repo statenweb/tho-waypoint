@@ -16,7 +16,8 @@ $category        = get_field( 'category' );
 		<h2 class="text-3xl md:text-4xl font-bold mb-8 text-center"><?php echo esc_html( $heading ); ?></h2>
 		<?php endif; ?>
 
-		<?php if ( class_exists( 'WooCommerce' ) ) :
+		<?php
+		if ( class_exists( 'WooCommerce' ) ) :
 			$meta_query = [];
 			$tax_query  = [];
 			if ( $category ) {
@@ -26,15 +27,17 @@ $category        = get_field( 'category' );
 					'terms'    => $category,
 				];
 			}
-			$products = wc_get_products( [
-				'limit'     => $products_count,
-				'status'    => 'publish',
-				'tax_query' => $tax_query ?: null,
-			] );
+			$products = wc_get_products(
+				[
+					'limit'     => $products_count,
+					'status'    => 'publish',
+					'tax_query' => $tax_query ?: null,
+				]
+			);
 			?>
-		<?php if ( $products ) : ?>
+			<?php if ( $products ) : ?>
 		<div class="grid grid-cols-1 md:grid-cols-<?php echo esc_attr( $columns ); ?> gap-8">
-			<?php foreach ( $products as $product ) : ?>
+				<?php foreach ( $products as $product ) : ?>
 			<a href="<?php echo esc_url( $product->get_permalink() ); ?>" class="group flex flex-col">
 				<div class="mb-4 overflow-hidden">
 					<?php echo $product->get_image( 'woocommerce_thumbnail', [ 'class' => 'w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300' ] ); ?>
