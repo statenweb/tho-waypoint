@@ -24,31 +24,7 @@ module.exports = {
 			},
 		},
 		extend: {
-			colors: {
-				// THO Brand Colors
-				'tho-black': '#000000',
-				'tho-white': '#FFFFFF',
-				'tho-dark-green': '#007129',
-				'tho-medium-green': '#00FF01',
-				'tho-light-green': '#AAFFAA',
-				// THO Grays
-				'tho-near-black': '#333333',
-				'tho-dark-gray': '#605E5E',
-				'tho-medium-gray': '#727272',
-				'tho-gray': '#999999',
-				'tho-warm-gray': '#A0A09F',
-				'tho-light-gray': '#B0B0B0',
-				'tho-lighter-gray': '#CCCCCC',
-				// THO Teals (secondary palette)
-				'tho-teal': '#00CEA8',
-				'tho-cyan': '#9FEFE0',
-				'tho-deep-teal': '#008970',
-				'tho-dark-teal': '#004538',
-				// System / Brand
-				'tho-red': '#ED1C24',
-				'tho-blue': '#0088CB',
-				'tho-gold': '#FFCB05',
-			},
+			colors: {},
 			fontFamily: {
 				// Display / Hero / Nav
 				display: ['Aero', 'Monument Extended', 'Impact', 'sans-serif'],

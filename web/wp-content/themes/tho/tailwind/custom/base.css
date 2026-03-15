@@ -58,7 +58,7 @@
  * editor.
  */
 body {
-	@apply bg-body-background text-body-text font-body;
+	@apply bg-white text-black font-body;
 }
 
 /**
@@ -93,7 +93,7 @@ p {
 }
 
 a {
-	@apply text-tho-blue transition-colors duration-tho;
+	@apply text-blue transition-colors duration-tho;
 }
 
 a:hover {
@@ -110,11 +110,11 @@ button,
 }
 
 .wp-block-button__link {
-	@apply bg-tho-dark-green text-tho-white font-heading text-heading-sm;
+	@apply bg-dark-green text-white font-heading text-heading-sm;
 }
 
 .wp-block-button__link:hover {
-	@apply bg-tho-black;
+	@apply bg-black;
 }
 
 /**
@@ -130,13 +130,13 @@ img {
 input,
 textarea,
 select {
-	@apply border border-tho-lighter-gray rounded-tho bg-tho-white px-4 py-2;
+	@apply border border-lighter-gray rounded-tho bg-white px-4 py-2;
 }
 
 input:focus,
 textarea:focus,
 select:focus {
-	@apply outline-none border-tho-dark-green;
+	@apply outline-none border-dark-green;
 }
 
 /**
@@ -144,19 +144,19 @@ select:focus {
  */
 .main-navigation a,
 .nav-menu a {
-	@apply font-nav text-nav text-tho-white uppercase no-underline transition-colors duration-tho;
+	@apply font-nav text-nav text-white uppercase no-underline transition-colors duration-tho;
 }
 
 .main-navigation a:hover,
 .nav-menu a:hover {
-	@apply text-tho-medium-green no-underline;
+	@apply text-medium-green no-underline;
 }
 
 /**
  * Header — black background, sticky.
  */
 .site-header {
-	@apply bg-tho-black;
+	@apply bg-black;
 	height: var(--tho-header-height);
 }
 
@@ -164,27 +164,27 @@ select:focus {
  * Footer — black background.
  */
 .site-footer {
-	@apply bg-tho-black text-tho-white;
+	@apply bg-black text-white;
 }
 
 .site-footer a {
-	@apply text-tho-white;
+	@apply text-white;
 }
 
 .site-footer a:hover {
-	@apply text-tho-teal no-underline;
+	@apply text-blue no-underline;
 }
 
 /**
  * Utility: full-width dark sections.
  */
 .bg-section-dark {
-	@apply bg-tho-black text-tho-white;
+	@apply bg-black text-white;
 }
 
 /**
  * Utility: full-width light sections.
  */
 .bg-section-light {
-	@apply bg-tho-white text-tho-black;
+	@apply bg-white text-black;
 }

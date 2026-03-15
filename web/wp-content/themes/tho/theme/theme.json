@@ -8,111 +8,30 @@
       "customGradient": true,
       "link": true,
       "palette": [
-        {
-          "slug": "black",
-          "color": "#000000",
-          "name": "Black"
-        },
-        {
-          "slug": "white",
-          "color": "#FFFFFF",
-          "name": "White"
-        },
-        {
-          "slug": "dark-green",
-          "color": "#007129",
-          "name": "Dark Green"
-        },
-        {
-          "slug": "medium-green",
-          "color": "#00FF01",
-          "name": "Medium Green"
-        },
-        {
-          "slug": "light-green",
-          "color": "#AAFFAA",
-          "name": "Light Green"
-        },
-        {
-          "slug": "near-black",
-          "color": "#333333",
-          "name": "Near Black"
-        },
-        {
-          "slug": "dark-gray",
-          "color": "#605E5E",
-          "name": "Dark Gray"
-        },
-        {
-          "slug": "medium-gray",
-          "color": "#727272",
-          "name": "Medium Gray"
-        },
-        {
-          "slug": "gray",
-          "color": "#999999",
-          "name": "Gray"
-        },
-        {
-          "slug": "warm-gray",
-          "color": "#A0A09F",
-          "name": "Warm Gray"
-        },
-        {
-          "slug": "light-gray",
-          "color": "#B0B0B0",
-          "name": "Light Gray"
-        },
-        {
-          "slug": "lighter-gray",
-          "color": "#CCCCCC",
-          "name": "Lighter Gray"
-        },
-        {
-          "slug": "teal",
-          "color": "#00CEA8",
-          "name": "Teal"
-        },
-        {
-          "slug": "cyan",
-          "color": "#9FEFE0",
-          "name": "Cyan"
-        },
-        {
-          "slug": "deep-teal",
-          "color": "#008970",
-          "name": "Deep Teal"
-        },
-        {
-          "slug": "dark-teal",
-          "color": "#004538",
-          "name": "Dark Teal"
-        },
-        {
-          "slug": "primary",
-          "color": "#000000",
-          "name": "Primary"
-        },
-        {
-          "slug": "secondary",
-          "color": "#007129",
-          "name": "Secondary"
-        },
-        {
-          "slug": "accent",
-          "color": "#00FF01",
-          "name": "Accent"
-        },
-        {
-          "slug": "body-background",
-          "color": "#FFFFFF",
-          "name": "Body Background"
-        },
-        {
-          "slug": "body-text",
-          "color": "#000000",
-          "name": "Body Text"
-        }
+        {"slug": "black", "color": "#000000", "name": "Black"},
+        {"slug": "white", "color": "#FFFFFF", "name": "White"},
+        {"slug": "dark-green", "color": "#007129", "name": "Dark Green"},
+        {"slug": "medium-green", "color": "#00FF01", "name": "Medium Green"},
+        {"slug": "light-green", "color": "#AAFFAA", "name": "Light Green"},
+        {"slug": "near-black", "color": "#333333", "name": "Near Black"},
+        {"slug": "dark-gray", "color": "#605E5E", "name": "Dark Gray"},
+        {"slug": "medium-gray", "color": "#727272", "name": "Medium Gray"},
+        {"slug": "gray", "color": "#999999", "name": "Gray"},
+        {"slug": "warm-gray", "color": "#A0A09F", "name": "Warm Gray"},
+        {"slug": "light-gray", "color": "#B0B0B0", "name": "Light Gray"},
+        {"slug": "lighter-gray", "color": "#CCCCCC", "name": "Lighter Gray"},
+        {"slug": "gray-100", "color": "#f7f7f7", "name": "Gray 100"},
+        {"slug": "gray-200", "color": "#eeeeee", "name": "Gray 200"},
+        {"slug": "gray-300", "color": "#cccccc", "name": "Gray 300"},
+        {"slug": "gray-400", "color": "#b0b0b0", "name": "Gray 400"},
+        {"slug": "gray-500", "color": "#999999", "name": "Gray 500"},
+        {"slug": "gray-600", "color": "#727272", "name": "Gray 600"},
+        {"slug": "gray-700", "color": "#605e5e", "name": "Gray 700"},
+        {"slug": "gray-800", "color": "#333333", "name": "Gray 800"},
+        {"slug": "gray-900", "color": "#1a1a1a", "name": "Gray 900"},
+        {"slug": "red", "color": "#ED1C24", "name": "Red"},
+        {"slug": "blue", "color": "#0088CB", "name": "Blue"},
+        {"slug": "gold", "color": "#FFCB05", "name": "Gold"}
       ],
       "gradients": []
     },
