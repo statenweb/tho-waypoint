@@ -40,7 +40,13 @@ class Text_Image_Split extends Block {
 
 		$section
 			->addText( 'heading', [ 'label' => 'Heading' ] )
-			->addWysiwyg( 'body_text', [ 'label' => 'Body Text', 'tabs' => 'basic' ] )
+			->addWysiwyg(
+				'body_text',
+				[
+					'label' => 'Body Text',
+					'tabs' => 'basic',
+				]
+			)
 			->addLink( 'cta_link', [ 'label' => 'CTA Link' ] )
 			->addImage(
 				'image',

@@ -19,7 +19,8 @@ $icons = [
 <section id="<?php echo esc_attr( $id ); ?>" class="<?php echo esc_attr( $block_classes ); ?>">
 	<?php if ( $links ) : ?>
 	<div class="flex items-center justify-center gap-6">
-		<?php foreach ( $links as $link ) :
+		<?php
+		foreach ( $links as $link ) :
 			$icon = $icons[ $link['platform'] ] ?? '';
 			?>
 		<a href="<?php echo esc_url( $link['url'] ); ?>" target="_blank" rel="noopener noreferrer" class="hover:opacity-70 transition-opacity duration-300" aria-label="<?php echo esc_attr( ucfirst( $link['platform'] ) ); ?>">

@@ -57,7 +57,13 @@ class Hero_Slideshow extends Block {
 					]
 				)
 				->addText( 'heading', [ 'label' => 'Heading' ] )
-				->addWysiwyg( 'body_text', [ 'label' => 'Body Text', 'tabs' => 'basic' ] )
+				->addWysiwyg(
+					'body_text',
+					[
+						'label' => 'Body Text',
+						'tabs' => 'basic',
+					]
+				)
 				->addLink( 'cta_link', [ 'label' => 'CTA Link' ] )
 			->endRepeater()
 			->addSelect(
