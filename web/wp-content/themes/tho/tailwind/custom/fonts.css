@@ -1,0 +1,72 @@
+/**
+ * THO — Font Face Declarations
+ *
+ * Custom `@font-face` rules for The Hidden Opponent design system.
+ *
+ * Original Wix-hosted fonts:
+ * - Aero (display): static.wixstatic.com/ufonts/64df78_...
+ * - Aeonik Bold Italic: static.wixstatic.com/ufonts/a4dae8_...
+ * - Aeonik Bold: static.wixstatic.com/ufonts/a4dae8_...
+ * - Aeonik Regular: static.wixstatic.com/ufonts/a4dae8_...
+ * - DIN Next W01 Light: static.parastorage.com/fonts/...
+ *
+ * TODO: Replace Inter/Aero placeholders with actual licensed font files
+ * when font licenses are acquired. Place .woff2 files in theme/assets/fonts/
+ * and update the url() paths below.
+ *
+ * Fallback strategy: Inter (free, geometric sans) serves as the body/heading
+ * substitute. Aero fallbacks to Impact/Monument Extended for display text.
+ */
+
+/* Aero — Display / Hero font (licensed, replace with local files) */
+@font-face {
+	font-family: 'Aero';
+	src: url('../assets/fonts/Aero.woff2') format('woff2'),
+	     url('../assets/fonts/Aero.woff') format('woff');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+/* Aeonik Regular — Body text */
+@font-face {
+	font-family: 'Aeonik';
+	src: url('../assets/fonts/Aeonik-Regular.woff2') format('woff2'),
+	     url('../assets/fonts/Aeonik-Regular.woff') format('woff');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+/* Aeonik Bold — Headings */
+@font-face {
+	font-family: 'Aeonik';
+	src: url('../assets/fonts/Aeonik-Bold.woff2') format('woff2'),
+	     url('../assets/fonts/Aeonik-Bold.woff') format('woff');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+/* Aeonik Bold Italic — Section headings */
+@font-face {
+	font-family: 'Aeonik';
+	src: url('../assets/fonts/Aeonik-BoldItalic.woff2') format('woff2'),
+	     url('../assets/fonts/Aeonik-BoldItalic.woff') format('woff');
+	font-weight: 700;
+	font-style: italic;
+	font-display: swap;
+}
+
+/* DIN Next W01 Light — Navigation, captions */
+@font-face {
+	font-family: 'DIN Next W01 Light';
+	src: url('../assets/fonts/DINNextW01-Light.woff2') format('woff2'),
+	     url('../assets/fonts/DINNextW01-Light.woff') format('woff');
+	font-weight: 300;
+	font-style: normal;
+	font-display: swap;
+}
+
+/* Google Fonts fallback — Inter for Aeonik substitute */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');

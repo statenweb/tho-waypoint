@@ -1,0 +1,190 @@
+/**
+ * THO — Base Styles
+ *
+ * Custom styles to immediately follow Tailwind's `base` layer.
+ * Built from the design system documented by the Senior UX Designer.
+ */
+
+/**
+ * CSS Custom Properties (design token bridge)
+ * Makes tokens available to non-Tailwind contexts (editor, inline styles, JS).
+ */
+:root {
+	/* Brand Colors */
+	--tho-black: #000000;
+	--tho-white: #FFFFFF;
+	--tho-dark-green: #007129;
+	--tho-medium-green: #00FF01;
+	--tho-light-green: #AAFFAA;
+
+	/* Grays */
+	--tho-near-black: #333333;
+	--tho-dark-gray: #605E5E;
+	--tho-medium-gray: #727272;
+	--tho-gray: #999999;
+	--tho-warm-gray: #A0A09F;
+	--tho-light-gray: #B0B0B0;
+	--tho-lighter-gray: #CCCCCC;
+
+	/* Teals */
+	--tho-teal: #00CEA8;
+	--tho-cyan: #9FEFE0;
+	--tho-deep-teal: #008970;
+	--tho-dark-teal: #004538;
+
+	/* System */
+	--tho-red: #ED1C24;
+	--tho-blue: #0088CB;
+	--tho-gold: #FFCB05;
+
+	/* Typography */
+	--tho-font-display: 'Aero', 'Monument Extended', Impact, sans-serif;
+	--tho-font-heading: 'Aeonik', Inter, system-ui, sans-serif;
+	--tho-font-body: 'Aeonik', Inter, system-ui, sans-serif;
+	--tho-font-nav: 'DIN Next W01 Light', system-ui, sans-serif;
+
+	/* Spacing */
+	--tho-header-height: 85px;
+	--tho-section-gap: 80px;
+	--tho-content-width: 980px;
+
+	/* Motion */
+	--tho-transition: 400ms ease;
+}
+
+/**
+ * This uses the background and foreground colors declared in the
+ * `theme.json` file and is applied both to the frontend and in the block
+ * editor.
+ */
+body {
+	@apply bg-body-background text-body-text font-body;
+}
+
+/**
+ * Base typography — sets the global heading styles using theme fonts.
+ */
+h1, h2, h3, h4, h5, h6 {
+	@apply font-heading;
+}
+
+h1 {
+	@apply text-display font-display uppercase tracking-wide;
+}
+
+h2 {
+	@apply text-heading-xl font-heading;
+}
+
+h3 {
+	@apply text-heading-lg font-heading italic;
+}
+
+h4 {
+	@apply text-heading-md font-heading font-bold;
+}
+
+h5 {
+	@apply text-heading-sm font-heading font-bold;
+}
+
+p {
+	@apply text-body-lg;
+}
+
+a {
+	@apply text-tho-blue transition-colors duration-tho;
+}
+
+a:hover {
+	@apply underline;
+}
+
+/**
+ * Button base styles — THO uses rectangular buttons (border-radius: 0).
+ */
+button,
+.wp-block-button__link,
+.btn {
+	@apply rounded-tho transition-all duration-tho;
+}
+
+.wp-block-button__link {
+	@apply bg-tho-dark-green text-tho-white font-heading text-heading-sm;
+}
+
+.wp-block-button__link:hover {
+	@apply bg-tho-black;
+}
+
+/**
+ * Image defaults.
+ */
+img {
+	@apply max-w-full h-auto;
+}
+
+/**
+ * Form input base.
+ */
+input,
+textarea,
+select {
+	@apply border border-tho-lighter-gray rounded-tho bg-tho-white px-4 py-2;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+	@apply outline-none border-tho-dark-green;
+}
+
+/**
+ * Navigation link base.
+ */
+.main-navigation a,
+.nav-menu a {
+	@apply font-nav text-nav text-tho-white uppercase no-underline transition-colors duration-tho;
+}
+
+.main-navigation a:hover,
+.nav-menu a:hover {
+	@apply text-tho-medium-green no-underline;
+}
+
+/**
+ * Header — black background, sticky.
+ */
+.site-header {
+	@apply bg-tho-black;
+	height: var(--tho-header-height);
+}
+
+/**
+ * Footer — black background.
+ */
+.site-footer {
+	@apply bg-tho-black text-tho-white;
+}
+
+.site-footer a {
+	@apply text-tho-white;
+}
+
+.site-footer a:hover {
+	@apply text-tho-teal no-underline;
+}
+
+/**
+ * Utility: full-width dark sections.
+ */
+.bg-section-dark {
+	@apply bg-tho-black text-tho-white;
+}
+
+/**
+ * Utility: full-width light sections.
+ */
+.bg-section-light {
+	@apply bg-tho-white text-tho-black;
+}
