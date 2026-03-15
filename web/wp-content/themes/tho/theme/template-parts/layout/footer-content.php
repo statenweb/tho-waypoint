@@ -4,7 +4,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package $starter-2024
+ * @package $tho
  */
 
 ?>
