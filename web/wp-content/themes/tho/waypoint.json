@@ -1,0 +1,115 @@
+{
+  "$schema": "./node_modules/@waypoint/theme-schema/schema.json",
+  "typography": {
+    "fontFamilies": {
+      "display": {
+        "family": "Outfit",
+        "fallback": ["sans-serif"],
+        "role": "Display / H1",
+        "source": "google",
+        "weights": [400]
+      },
+      "heading": {
+        "family": "Inter",
+        "fallback": ["sans-serif"],
+        "role": "Headings H2-H5 / Body",
+        "source": "google",
+        "weights": [400, 700]
+      },
+      "nav": {
+        "family": "Inter",
+        "fallback": ["sans-serif"],
+        "role": "Navigation / Menu",
+        "source": "google",
+        "weights": [300]
+      }
+    },
+    "fontSizes": {
+      "display": {
+        "size": "6.875rem",
+        "lineHeight": "1.1",
+        "weight": "400",
+        "letterSpacing": "0.02em",
+        "comment": "110px — Hero text"
+      },
+      "h1": {
+        "size": "2.625rem",
+        "lineHeight": "1.2",
+        "weight": "400",
+        "comment": "42px — Page titles"
+      },
+      "h2": {
+        "size": "2.1875rem",
+        "lineHeight": "1.25",
+        "weight": "700",
+        "fontStyle": "italic",
+        "comment": "35px — Section titles (Aeonik Bold Italic)"
+      },
+      "h3": {
+        "size": "1.4375rem",
+        "lineHeight": "1.3",
+        "weight": "700",
+        "comment": "23px — Subsection headings"
+      },
+      "h4": {
+        "size": "1.25rem",
+        "lineHeight": "1.35",
+        "weight": "700",
+        "comment": "20px — Heading M"
+      },
+      "body-lg": {
+        "size": "1.0625rem",
+        "lineHeight": "1.6",
+        "weight": "400",
+        "comment": "17px — Heading S / Body L"
+      },
+      "body": {
+        "size": "0.9375rem",
+        "lineHeight": "1.6",
+        "weight": "400",
+        "comment": "15px — Body M"
+      },
+      "body-sm": {
+        "size": "0.875rem",
+        "lineHeight": "1.5",
+        "weight": "400",
+        "comment": "14px — Body S"
+      },
+      "nav": {
+        "size": "1rem",
+        "lineHeight": "1.4",
+        "weight": "300",
+        "comment": "16px — Nav / Menu"
+      },
+      "caption": {
+        "size": "0.75rem",
+        "lineHeight": "1.4",
+        "weight": "300",
+        "comment": "12px — Caption / XS"
+      }
+    }
+  },
+  "spacing": {
+    "headerHeight": "5.3125rem",
+    "headerHeightComment": "85px — Sticky header",
+    "sectionPadding": {
+      "min": "2.5rem",
+      "max": "5rem",
+      "comment": "40-80px vertical padding between content blocks"
+    },
+    "contentMaxWidth": "61.25rem",
+    "contentMaxWidthComment": "980px — Max content width",
+    "footerLogoSize": "6.125rem",
+    "footerLogoSizeComment": "98px — Footer logo",
+    "socialIconSize": "2.9375rem",
+    "socialIconSizeComment": "47px — Social icons"
+  },
+  "breakpoints": {
+    "mobile": "34.375rem",
+    "mobileComment": "550px — Primary mobile breakpoint",
+    "tablet": "25rem",
+    "tabletComment": "400px — Small tablet",
+    "small": "17.5rem",
+    "smallComment": "280px — Smallest breakpoint"
+  }
+}

@@ -156,59 +156,71 @@
       "customFontSize": true,
       "fontFamilies": [
         {
-          "name": "Inter",
-          "slug": "inter"
+          "name": "Outfit",
+          "slug": "outfit",
+          "fontFamily": "Outfit, sans-serif"
         },
         {
-          "name": "Roboto",
-          "slug": "roboto"
+          "name": "Inter",
+          "slug": "inter",
+          "fontFamily": "Inter, sans-serif"
         }
       ],
       "fontSizes": [
         {
-          "name": "Extra Small",
-          "slug": "extra-small",
-          "size": "14px"
+          "name": "Caption",
+          "slug": "caption",
+          "size": "12px"
         },
         {
-          "name": "Small",
-          "slug": "small",
+          "name": "Nav",
+          "slug": "nav",
           "size": "16px"
         },
         {
-          "name": "Paragraph 1",
-          "slug": "paragraph-1",
-          "size": "18px"
+          "name": "Body Small",
+          "slug": "body-small",
+          "size": "14px"
         },
         {
-          "name": "Paragraph 1",
-          "slug": "paragraph-1",
-          "size": "18px"
+          "name": "Body",
+          "slug": "body",
+          "size": "15px"
         },
         {
-          "name": "Subheading 1",
-          "slug": "subheading-1",
-          "size": "22px"
+          "name": "Body Large",
+          "slug": "body-large",
+          "size": "17px"
+        },
+        {
+          "name": "Heading 4",
+          "slug": "heading-4",
+          "size": "20px"
         },
         {
           "name": "Heading 3",
           "slug": "heading-3",
-          "size": "26px"
+          "size": "23px"
         },
         {
           "name": "Heading 2",
           "slug": "heading-2",
-          "size": "36px"
+          "size": "35px"
         },
         {
           "name": "Heading 1",
           "slug": "heading-1",
-          "size": "56px"
+          "size": "42px"
+        },
+        {
+          "name": "Display",
+          "slug": "display",
+          "size": "110px"
         }
       ]
     },
     "layout": {
-      "contentSize": "60rem",
+      "contentSize": "61.25rem",
       "wideSize": "80rem"
     }
   }
