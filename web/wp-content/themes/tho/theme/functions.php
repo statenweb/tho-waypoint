@@ -9,7 +9,7 @@ require_once __DIR__ . '/application.php';
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
- * @package $starter-2024
+ * @package $tho
  */
 
 if ( ! defined( '_TW_VERSION' ) ) {

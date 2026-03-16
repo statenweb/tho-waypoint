@@ -1,5 +1,5 @@
 {
-  "name": "statenweb/starter-2024",
+  "name": "statenweb/tho",
   "type": "project",
   "license": "MIT",
   "description": "Custom build for {THEME_NAME}",
@@ -98,10 +98,10 @@
   },
   "scripts": {
     "lint": [
-      "vendor/bin/phpcs ./web/wp-content/themes/starter-2024/ --standard=statenweb.xml  -d memory_limit=512M --ignore=*.js,./web/wp-content/themes/starter-2024/vendor/*,./web/wp-content/themes/starter-2024/node_modules/*,*.css --error-severity=1 --warning-severity=6"
+      "vendor/bin/phpcs ./web/wp-content/themes/tho/ --standard=statenweb.xml  -d memory_limit=512M --ignore=*.js,./web/wp-content/themes/tho/vendor/*,./web/wp-content/themes/tho/node_modules/*,*.css --error-severity=1 --warning-severity=6"
     ],
     "lint-fix": [
-      "vendor/bin/phpcbf ./web/wp-content/themes/starter-2024/ --standard=statenweb.xml  -d memory_limit=512M --ignore=*.js,./web/wp-content/themes/starter-2024/vendor/*,./web/wp-content/themes/starter-2024/node_modules/*,*.css --error-severity=1 --warning-severity=6"
+      "vendor/bin/phpcbf ./web/wp-content/themes/tho/ --standard=statenweb.xml  -d memory_limit=512M --ignore=*.js,./web/wp-content/themes/tho/vendor/*,./web/wp-content/themes/tho/node_modules/*,*.css --error-severity=1 --warning-severity=6"
     ]
   }
 }
