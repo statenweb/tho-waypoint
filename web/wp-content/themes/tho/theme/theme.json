@@ -9,39 +9,134 @@
       "link": true,
       "palette": [
         {
-          "slug": "medium-blue",
-          "color": "#0173B7",
-          "name": "Medium Blue"
+          "slug": "black",
+          "color": "#000000",
+          "name": "Black"
         },
         {
-          "slug": "body-background",
-          "color": "#f9f9f9",
-          "name": "Body Background"
+          "slug": "white",
+          "color": "#FFFFFF",
+          "name": "White"
         },
         {
-          "slug": "body-text",
-          "color": "#030D1F",
-          "name": "Body Text"
+          "slug": "dark-green",
+          "color": "#007129",
+          "name": "Dark Green"
+        },
+        {
+          "slug": "medium-green",
+          "color": "#00FF01",
+          "name": "Medium Green"
+        },
+        {
+          "slug": "light-green",
+          "color": "#AAFFAA",
+          "name": "Light Green"
+        },
+        {
+          "slug": "teal",
+          "color": "#00CEA8",
+          "name": "Teal"
+        },
+        {
+          "slug": "cyan",
+          "color": "#9FEFE0",
+          "name": "Cyan"
+        },
+        {
+          "slug": "deep-teal",
+          "color": "#008970",
+          "name": "Deep Teal"
+        },
+        {
+          "slug": "dark-teal",
+          "color": "#004538",
+          "name": "Dark Teal"
+        },
+        {
+          "slug": "red",
+          "color": "#ED1C24",
+          "name": "Red"
+        },
+        {
+          "slug": "blue",
+          "color": "#0088CB",
+          "name": "Blue"
+        },
+        {
+          "slug": "gold",
+          "color": "#FFCB05",
+          "name": "Gold"
         },
         {
           "slug": "primary",
-          "color": "#030D1F",
+          "color": "#000000",
           "name": "Primary"
         },
         {
           "slug": "secondary",
-          "color": "#D33414",
+          "color": "#007129",
           "name": "Secondary"
         },
         {
           "slug": "accent",
-          "color": "#ef4137",
+          "color": "#00CEA8",
           "name": "Accent"
         },
         {
-          "slug": "white",
-            "color": "#ffffff",
-            "name": "White"
+          "slug": "body-background",
+          "color": "#FFFFFF",
+          "name": "Body Background"
+        },
+        {
+          "slug": "body-text",
+          "color": "#000000",
+          "name": "Body Text"
+        },
+        {
+          "slug": "gray-100",
+          "color": "#F5F5F5",
+          "name": "Gray 100"
+        },
+        {
+          "slug": "gray-200",
+          "color": "#E5E5E5",
+          "name": "Gray 200"
+        },
+        {
+          "slug": "gray-300",
+          "color": "#CCCCCC",
+          "name": "Gray 300"
+        },
+        {
+          "slug": "gray-400",
+          "color": "#B0B0B0",
+          "name": "Gray 400"
+        },
+        {
+          "slug": "gray-500",
+          "color": "#A0A09F",
+          "name": "Gray 500"
+        },
+        {
+          "slug": "gray-600",
+          "color": "#999999",
+          "name": "Gray 600"
+        },
+        {
+          "slug": "gray-700",
+          "color": "#727272",
+          "name": "Gray 700"
+        },
+        {
+          "slug": "gray-800",
+          "color": "#605E5E",
+          "name": "Gray 800"
+        },
+        {
+          "slug": "gray-900",
+          "color": "#333333",
+          "name": "Gray 900"
         }
       ],
       "gradients": []
